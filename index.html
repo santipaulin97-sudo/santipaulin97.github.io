@@ -1,129 +1,200 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Portfolio — Santiago Paulin</title>
-    
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Santiago Paulin</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+    background: #0a0f1a;
+    overflow-x: hidden;
+  }
+
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto;
+  }
+
+  h1, h2 {
+    text-align: center;
+    color: #00e5ff;
+  }
+
+  .section {
+    margin: 60px 0;
+  }
+
+  .about, .experience, .projects, .skills {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+  }
+
+  .experience-item {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .experience-item img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+
+  .projects-list, .skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+  }
+
+  .project, .skill {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 15px;
+    transition: transform 0.3s ease;
+  }
+
+  .project:hover, .skill:hover {
+    transform: scale(1.05);
+    background: rgba(0, 255, 204, 0.12);
+  }
+
+  a {
+    color: #00e5ff;
+    text-decoration: none;
+  }
+</style>
 </head>
 <body>
-    <canvas id="bgCanvas"></canvas>
 
-    <div class="page">
-        <header>
-            <div class="avatar-placeholder">SP</div>
-            <div>
-                <h1>Santiago Paulin</h1>
-                <p class="small">Financial & Data Engineer — BigQuery · Python · Power BI · ETL</p>
-            </div>
-        </header>
+<canvas id="network"></canvas>
 
-        <div class="top-grid">
-            <div>
-                <section class="card" id="about">
-                    <h2>About</h2>
-                    <p class="small">Data-driven professional with experience building ETL pipelines, dashboards and automation for US & LatAm operations. I design solutions that convert business needs into robust analytics.</p>
-                </section>
+<div class="container">
+  <h1>Santiago Paulin</h1>
 
-                <section class="card" id="experience" style="margin-top:16px">
-                    <h2>Professional Experience</h2>
-                    <div class="exp-list">
-                        <div class="exp">
-                            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/3/32/MercadoLibre_Logo.svg" alt="Mercado Libre logo">
-                            <div class="meta">
-                                <strong>Data Engineer — Mercado Libre</strong>
-                                <span>Building pipelines & BI for Logistic Operations — BigQuery · Cloud · Python</span>
-                            </div>
-                        </div>
+  <section class="section about">
+    <h2>About Me</h2>
+    <p>Financial Analyst with strong data analysis and ETL background. Experienced in automating reports, building Power BI dashboards, and optimizing financial tracking systems.</p>
+  </section>
 
-                        <div class="exp">
-                            <img class="logo" src="https://www.pfsglobal.net/images/logo.svg" alt="PFS Global logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2240%22><rect width=%2272%22 height=%2240%22 fill=%22%23081a1f%22/><text x=%224%22 y=%2224%22 fill=%22%23e6fff7%22 font-size=%2210%22 font-family=%22Arial%22> PFS Global </text></svg>'">
-                            <div class="meta">
-                                <strong>Financial Analyst — PFS Global</strong>
-                                <span>Revenue optimization & financial reporting — Power BI · SQL</span>
-                            </div>
-                        </div>
+  <section class="section experience">
+    <h2>Experience</h2>
 
-                        <div class="exp">
-                            <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Accenture.svg" alt="Accenture logo">
-                            <div class="meta">
-                                <strong>Financial Analyst — Accenture</strong>
-                                <span>Budget control & profitability dashboards</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="card" id="projects" style="margin-top:16px">
-                    <h2>Highlighted Projects</h2>
-                    <div class="projects">
-                        <div class="project">
-                            <strong>Logistics BI Automation</strong>
-                            <p>End-to-end ETL pipelines delivering daily insights for warehouse operations — BigQuery · Python</p>
-                        </div>
-
-                        <div class="project">
-                            <strong>Financial KPI Dashboard</strong>
-                            <p>Dynamic reporting for contract margin analysis and decision-making — Power BI · SQL</p>
-                        </div>
-
-                        <div class="project">
-                            <strong>Travel Bot AI Assistant</strong>
-                            <p>Automated travel assistant integrating <b>Perplexity AI</b>, <b>Skyscanner API</b> and <b>Flights API</b>, delivering flight options via WhatsApp to agents.</p>
-                        </div>
-
-                        <div class="project">
-                            <strong>Dollar Sentiment Report</strong>
-                            <p>Pipeline that scrapes main Argentine finance sites, runs NLP sentiment and produces a daily dollar sentiment report.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <aside class="side">
-                <section class="card">
-                    <h2>Skills</h2>
-                    <div class="skills-logo-grid">
-                        <div class="skill-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python logo">
-                            <span>Python</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Google-BigQuery-Logo.svg" alt="BigQuery logo">
-                            <span>BigQuery</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Microsoft_Power_BI.svg" alt="Power BI logo">
-                            <span>Power BI</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="SQL logo">
-                            <span>SQL</span>
-                        </div>
-                        <div class="skill-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_Cloud_logo.svg" alt="Cloud logo">
-                            <span>Cloud</span>
-                        </div>
-                         <div class="skill-item">
-                            <img src="https://static.thenounproject.com/png/1126305-200.png" alt="ETL logo" style="filter: invert(1) brightness(0.8);">
-                            <span>ETL</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="card">
-                    <h2>Contact</h2>
-                    <p class="small">Santiago Paulin — Buenos Aires, AR</p>
-                    <p class="small" style="margin-top:8px">Email: <span style="color:#dff">santiago@example.com</span></p>
-                </section>
-            </aside>
-        </div>
-
-        <footer>© 2025 Santiago Paulin</footer>
+    <div class="experience-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/MercadoLibre_logo.svg" alt="Mercado Libre Logo">
+      <h3>Financial Analyst - Mercado Libre</h3>
+      <p>Analyzed operational and financial data across logistics and commerce projects. Automated controls and visualizations using SQL and Power BI.</p>
     </div>
 
-    <script src="app.js"></script>
+    <div class="experience-item">
+      <img src="https://www.accenture.com/t20180820T081910Z__w__/us-en/_acnmedia/Accenture/Redesign-Assets/DotCom/Images/Global/Logo/Acc_Logo_Black_Purple_RGB.png" alt="Accenture Logo">
+      <h3>Financial Analyst - Accenture</h3>
+      <p>Developed financial reports and supported cost analysis for international accounts. Enhanced reporting pipelines using Excel, VBA, and Power Query.</p>
+    </div>
+
+    <div class="experience-item">
+      <img src="https://www.pfsglobal.com.ar/wp-content/uploads/2023/08/logo-pfs.svg" alt="PFS Global Logo">
+      <h3>Financial Analyst - PFS Global</h3>
+      <p>Managed budget control and profitability analysis per project and manager. Built data-driven models to improve decision-making processes.</p>
+    </div>
+  </section>
+
+  <section class="section projects">
+    <h2>Projects</h2>
+    <div class="projects-list">
+      <div class="project">
+        <h3>Travel Bot AI Assistant</h3>
+        <p>Automated travel assistant integrating Perplexity AI, Skyscanner API, and Flights API to help travel agents find and share flight options via WhatsApp.</p>
+      </div>
+
+      <div class="project">
+        <h3>Dollar Sentiment Report</h3>
+        <p>Python-based pipeline scraping Argentine news, analyzing sentiment on USD trends, and generating predictive reports using NLP techniques.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section skills">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <div class="skill">SQL & BigQuery</div>
+      <div class="skill">Python (ETL & Automation)</div>
+      <div class="skill">Power BI</div>
+      <div class="skill">Financial Analysis</div>
+      <div class="skill">Data Visualization</div>
+      <div class="skill">API Integration</div>
+    </div>
+  </section>
+</div>
+
+<script>
+const canvas = document.getElementById('network');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let nodes = [];
+let numNodes = 90;
+
+for (let i = 0; i < numNodes; i++) {
+  nodes.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.6,
+    vy: (Math.random() - 0.5) * 0.6,
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < numNodes; i++) {
+    let n = nodes[i];
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = '#00ffcc';
+    ctx.fill();
+    for (let j = i + 1; j < numNodes; j++) {
+      let m = nodes[j];
+      let dx = n.x - m.x;
+      let dy = n.y - m.y;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.strokeStyle = `rgba(0, 255, 204, ${1 - dist / 120})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(n.x, n.y);
+        ctx.lineTo(m.x, m.y);
+        ctx.stroke();
+      }
+    }
+    n.x += n.vx;
+    n.y += n.vy;
+    if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+    if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+</script>
+
 </body>
 </html>
-
