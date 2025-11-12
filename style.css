@@ -1,210 +1,179 @@
-/* --- Variables de Color (basado en tu foto) --- */
 :root {
-    --bg-dark: #0B0F18; /* Fondo principal muy oscuro */
-    --bg-card: #121822; /* Fondo de las tarjetas y barra de nav */
-    --border-color: #2a313c; /* Borde sutil de las tarjetas */
-    --text-primary: #E0E0E0; /* Texto principal (casi blanco) */
-    --text-secondary: #a0a7b0; /* Texto secundario (gris) */
-    --accent: #00e6ac; /* Acento color cian/verde */
-}
-
-/* --- Reseteo y Estilos Base --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth; /* Desplazamiento suave */
+  --bg: #0a0f1a;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --accent: #00e6ac;
+  --text: #e0e0e0;
 }
 
 body {
-    background-color: var(--bg-dark);
-    color: var(--text-primary);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-    padding-top: 60px; /* Dejamos espacio para la barra de nav fija */
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
 }
 
-/* --- Barra de Navegación Superior --- */
-.navbar {
-    width: 100%;
-    background-color: var(--bg-card); /* Fondo oscuro */
-    border-bottom: 2px solid var(--accent);
-    padding: 0 2rem;
-    position: fixed; /* Fija la barra arriba */
-    top: 0;
-    left: 0;
-    z-index: 100;
-    height: 60px;
-    display: flex;
-    align-items: center;
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }
 
-.navbar-content {
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header {
+  text-align: center;
+  padding: 4rem 1rem 2rem;
 }
 
-.navbar-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text-primary);
+h1 {
+  color: var(--accent);
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
 }
 
-.navbar nav {
-    display: flex;
-    gap: 20px;
+/* --- ESTILOS PARA EL SUBTÍTULO DINÁMICO --- */
+.subtitle {
+  font-size: 1.2rem;
+  color: #a0a7b0; /* Color de texto secundario */
+  height: 30px; /* Alto fijo para que no "salte" */
+}
+/* El cursor | que parpadea */
+#subtitle-text::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: var(--accent);
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+/* --- FIN ESTILOS SUBTÍTULO --- */
+
+
+main {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
 }
 
-.navbar nav a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: all 0.2s ease-in-out;
+section {
+  margin-bottom: 3rem;
 }
 
-.navbar nav a:hover {
-    color: var(--text-primary);
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* --- Contenedor Principal --- */
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 40px auto; /* Espacio arriba/abajo */
-}
-
-.content-section {
-    margin-bottom: 50px; /* Espacio entre secciones */
-}
-
-/* --- Títulos de Sección --- */
 h2 {
-    color: var(--accent);
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
+  color: var(--accent);
+  margin-bottom: 1.5rem; /* Más espacio */
 }
 
-p {
-    color: var(--text-secondary);
-    font-size: 16px;
+.cards {
+  display: grid;
+  gap: 1.5rem;
 }
 
-/* --- Tarjetas de Items (Experiencia y Proyectos) --- */
-.item-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px; /* Espacio entre tarjetas */
+/* --- ESTILOS PARA LAS COLUMNAS --- */
+/* Por defecto, una columna (para experiencia) */
+.cards.single-column {
+  grid-template-columns: 1fr;
 }
+/* Para proyectos, 2 columnas */
+.cards.two-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+/* --- FIN ESTILOS COLUMNAS --- */
+
 
 .item-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px 24px;
-    transition: all 0.2s ease-in-out;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem; /* Más padding */
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Borde sutil */
 }
 
 .item-card:hover {
-    border-color: var(--accent); /* Resalta al pasar el mouse */
-    transform: translateY(-3px);
+  transform: translateY(-5px); /* Mejor efecto de hover */
+  background-color: rgba(255, 255, 255, 0.07);
+  border-color: rgba(0, 230, 172, 0.5); /* Borde de acento */
 }
 
-.item-card strong {
-    display: block;
-    color: var(--text-primary);
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 4px;
+.company-logo {
+  height: 40px;
+  display: block;
+  margin-bottom: 12px;
+  opacity: 0.9;
 }
 
-.item-card p {
-    font-size: 15px;
-    color: var(--text-secondary);
+/* --- ESTILOS PARA SKILLS CON LOGOS (RECOMENDADO) --- */
+.skills-logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
-
-/* --- Sección de Skills (Logos) --- */
-.skills-container {
+.skill-item {
     display: flex;
-    flex-wrap: wrap; /* Para que bajen si no caben */
+    flex-direction: column;
     align-items: center;
-    gap: 32px; /* Espacio entre logos */
-    padding: 10px 0;
+    gap: 12px;
+    padding: 1.5rem 1rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    transition: all 0.3s ease;
 }
-
-.skills-container img {
-    height: 36px; /* Altura fija para todos */
-    width: auto;
+.skill-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.07);
+}
+.skill-item img {
+    height: 40px;
+    width: 40px;
     object-fit: contain;
-    opacity: 0.8;
-    transition: all 0.2s ease;
 }
-
-.skills-container img:hover {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-/* --- Sección de Contacto --- */
-.contact-links p {
-    font-size: 16px;
-}
-.contact-links a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 500;
-}
-.contact-links a:hover {
-    text-decoration: underline;
-}
-
-/* --- Footer --- */
-footer {
+.skill-item span {
+    font-size: 14px;
+    color: var(--text);
     text-align: center;
-    padding: 30px 0;
-    color: var(--text-secondary);
-    font-size: 13px;
-    border-top: 1px solid var(--border-color);
-    margin-top: 50px;
+}
+/* --- FIN ESTILOS SKILLS --- */
+
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #aaa;
 }
 
-/* --- Ajustes para Móviles --- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsive para las columnas --- */
 @media (max-width: 768px) {
-    body {
-        padding-top: 50px; /* Menos padding en móvil */
-    }
-    .navbar {
-        height: 50px;
-        padding: 0 1rem;
-    }
-    .navbar-title {
-        font-size: 1rem; /* Título más chico */
-    }
-    .navbar nav {
-        gap: 5px; /* Links más juntos */
-    }
-    .navbar nav a {
-        padding: 6px;
-        font-size: 12px;
-    }
-    .container {
-        width: 95%;
-        margin-top: 20px;
-    }
-    h2 {
-        font-size: 20px;
-    }
+  /* En móviles, todo a 1 columna */
+  .cards.two-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-logo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+  
+  header {
+    padding-top: 2.5rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
 }
