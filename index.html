@@ -1,200 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio - Santiago Paulin</title>
-<style>
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #e0e0e0;
-    background: #0a0f1a;
-    overflow-x: hidden;
-  }
-
-  canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-
-  .container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 60px auto;
-  }
-
-  h1, h2 {
-    text-align: center;
-    color: #00e5ff;
-  }
-
-  .section {
-    margin: 60px 0;
-  }
-
-  .about, .experience, .projects, .skills {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
-  }
-
-  .experience-item {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .experience-item img {
-    width: 80px;
-    height: auto;
-    margin-bottom: 10px;
-    opacity: 0.9;
-  }
-
-  .projects-list, .skills-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
-  }
-
-  .project, .skill {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 15px;
-    transition: transform 0.3s ease;
-  }
-
-  .project:hover, .skill:hover {
-    transform: scale(1.05);
-    background: rgba(0, 255, 204, 0.12);
-  }
-
-  a {
-    color: #00e5ff;
-    text-decoration: none;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santiago Paulin — Data Engineer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <canvas id="background"></canvas>
 
-<canvas id="network"></canvas>
+  <header>
+    <h1>Santiago Paulin</h1>
+    <p>Data Engineer | Financial Analyst | ETL Automation | BI & AI Integration</p>
+  </header>
 
-<div class="container">
-  <h1>Santiago Paulin</h1>
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Passionate about data engineering, analytics and automation. I love building efficient ETL pipelines, visual dashboards and AI-integrated solutions that bring insights to life.
+      </p>
+    </section>
 
-  <section class="section about">
-    <h2>About Me</h2>
-    <p>Financial Analyst with strong data analysis and ETL background. Experienced in automating reports, building Power BI dashboards, and optimizing financial tracking systems.</p>
-  </section>
-
-  <section class="section experience">
-    <h2>Experience</h2>
-
-    <div class="experience-item">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/MercadoLibre_logo.svg" alt="Mercado Libre Logo">
-      <h3>Financial Analyst - Mercado Libre</h3>
-      <p>Analyzed operational and financial data across logistics and commerce projects. Automated controls and visualizations using SQL and Power BI.</p>
-    </div>
-
-    <div class="experience-item">
-      <img src="https://www.accenture.com/t20180820T081910Z__w__/us-en/_acnmedia/Accenture/Redesign-Assets/DotCom/Images/Global/Logo/Acc_Logo_Black_Purple_RGB.png" alt="Accenture Logo">
-      <h3>Financial Analyst - Accenture</h3>
-      <p>Developed financial reports and supported cost analysis for international accounts. Enhanced reporting pipelines using Excel, VBA, and Power Query.</p>
-    </div>
-
-    <div class="experience-item">
-      <img src="https://www.pfsglobal.com.ar/wp-content/uploads/2023/08/logo-pfs.svg" alt="PFS Global Logo">
-      <h3>Financial Analyst - PFS Global</h3>
-      <p>Managed budget control and profitability analysis per project and manager. Built data-driven models to improve decision-making processes.</p>
-    </div>
-  </section>
-
-  <section class="section projects">
-    <h2>Projects</h2>
-    <div class="projects-list">
-      <div class="project">
-        <h3>Travel Bot AI Assistant</h3>
-        <p>Automated travel assistant integrating Perplexity AI, Skyscanner API, and Flights API to help travel agents find and share flight options via WhatsApp.</p>
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="cards">
+        <div class="item-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/MercadoLibre_logo.svg" alt="Mercado Libre" class="company-logo">
+          <strong>Data Engineer — Mercado Libre</strong>
+          <p>Automation of warehouse financial reporting and ETL pipelines in GCP using BigQuery and Python.</p>
+        </div>
+        <div class="item-card">
+          <img src="https://www.pfsglobal.com/wp-content/uploads/2020/06/logo-pfs-global-1.png" alt="PFS Global" class="company-logo">
+          <strong>Financial Analyst — PFS Global</strong>
+          <p>Created Power BI dashboards and SQL models to track margin and operational KPIs across clients.</p>
+        </div>
+        <div class="item-card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Accenture.svg" alt="Accenture" class="company-logo">
+          <strong>Financial Analyst — Accenture</strong>
+          <p>Worked on financial planning and project reporting for US-based operations using Excel automation and macros.</p>
+        </div>
       </div>
+    </section>
 
-      <div class="project">
-        <h3>Dollar Sentiment Report</h3>
-        <p>Python-based pipeline scraping Argentine news, analyzing sentiment on USD trends, and generating predictive reports using NLP techniques.</p>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="cards">
+        <div class="item-card">
+          <strong>ETL Performance Monitor</strong>
+          <p>Developed an automated dashboard to track ETL pipeline runtime differences and detect anomalies.</p>
+        </div>
+        <div class="item-card">
+          <strong>Travel Bot (Perplexity + Skyscanner API)</strong>
+          <p>AI agent via WhatsApp that searches for flights using Skyscanner and Flights API, sending agents quick booking links.</p>
+        </div>
+        <div class="item-card">
+          <strong>Dollar Sentiment Report</strong>
+          <p>Automated report analyzing Argentine news sentiment to predict USD daily trends.</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section skills">
-    <h2>Skills</h2>
-    <div class="skills-list">
-      <div class="skill">SQL & BigQuery</div>
-      <div class="skill">Python (ETL & Automation)</div>
-      <div class="skill">Power BI</div>
-      <div class="skill">Financial Analysis</div>
-      <div class="skill">Data Visualization</div>
-      <div class="skill">API Integration</div>
-    </div>
-  </section>
-</div>
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul class="skills-list">
+        <li>Python (Pandas, NumPy, Requests)</li>
+        <li>SQL (BigQuery, SQLite, PostgreSQL)</li>
+        <li>Power BI & Data Visualization</li>
+        <li>ETL / Airflow / API Integration</li>
+        <li>Machine Learning & Sentiment Analysis</li>
+      </ul>
+    </section>
 
-<script>
-const canvas = document.getElementById('network');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>📧 <a href="mailto:santiago.paulin@example.com">santiago.paulin@example.com</a></p>
+      <p>💼 <a href="https://www.linkedin.com/in/santiagopaulin" target="_blank">LinkedIn Profile</a></p>
+    </section>
+  </main>
 
-let nodes = [];
-let numNodes = 90;
+  <footer>
+    <p>© 2025 Santiago Paulin | Data Engineer</p>
+  </footer>
 
-for (let i = 0; i < numNodes; i++) {
-  nodes.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    vx: (Math.random() - 0.5) * 0.6,
-    vy: (Math.random() - 0.5) * 0.6,
-  });
-}
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = 0; i < numNodes; i++) {
-    let n = nodes[i];
-    ctx.beginPath();
-    ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = '#00ffcc';
-    ctx.fill();
-    for (let j = i + 1; j < numNodes; j++) {
-      let m = nodes[j];
-      let dx = n.x - m.x;
-      let dy = n.y - m.y;
-      let dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 120) {
-        ctx.strokeStyle = `rgba(0, 255, 204, ${1 - dist / 120})`;
-        ctx.lineWidth = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(n.x, n.y);
-        ctx.lineTo(m.x, m.y);
-        ctx.stroke();
-      }
-    }
-    n.x += n.vx;
-    n.y += n.vy;
-    if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
-    if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-  }
-  requestAnimationFrame(draw);
-}
-draw();
-
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+
