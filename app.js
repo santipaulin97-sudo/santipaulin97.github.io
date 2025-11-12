@@ -1,3 +1,4 @@
+// --- 1. Tu animación de partículas (SIN CAMBIOS) ---
 const canvas = document.getElementById("background");
 const ctx = canvas.getContext("2d");
 
@@ -50,3 +51,51 @@ function draw() {
 }
 
 draw();
+
+// --- 2. Lógica nueva para el subtítulo dinámico ---
+document.addEventListener("DOMContentLoaded", function() {
+  const words = [
+    "Data Engineer",
+    "Financial Analyst",
+    "Python Developer",
+    "BigQuery & SQL",
+    "Power BI & Dashboards",
+    "ETL Automation"
+  ];
+  let i = 0;
+  let j = 0;
+  let currentWord = "";
+  let isDeleting = false;
+  const target = document.getElementById("subtitle-text");
+
+  function type() {
+    currentWord = words[i];
+    
+    if (isDeleting) {
+      // Borrando
+      target.textContent = currentWord.substring(0, j--);
+    } else {
+      // Escribiendo
+      target.textContent = currentWord.substring(0, j++);
+    }
+
+    // Comprobar si terminó de escribir o borrar
+    if (!isDeleting && j === currentWord.length) {
+      // Terminó de escribir, pausa y empieza a borrar
+      isDeleting = true;
+      setTimeout(type, 2000); // Pausa antes de borrar
+    } else if (isDeleting && j === 0) {
+      // Terminó de borrar, pasa a la siguiente palabra
+      isDeleting = false;
+      i = (i + 1) % words.length; // Va a la siguiente palabra (o vuelve al inicio)
+      setTimeout(type, 500); // Pausa antes de escribir la nueva
+    } else {
+      // Sigue escribiendo o borrando
+      const typeSpeed = isDeleting ? 50 : 100; // Más rápido borrando
+      setTimeout(type, typeSpeed);
+    }
+  }
+  
+  // Inicia el efecto
+  type();
+});
