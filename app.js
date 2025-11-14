@@ -1,101 +1,93 @@
-// --- 1. Tu animación de partículas (SIN CAMBIOS) ---
-const canvas = document.getElementById("background");
+// --- network background ---
+const canvas = document.getElementById("network-bg");
 const ctx = canvas.getContext("2d");
 
-let width, height, points;
+let W, H, nodes;
 
 function resize() {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-  points = Array(120).fill().map(() => ({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    vx: (Math.random() - 0.5) * 0.6,
-    vy: (Math.random() - 0.5) * 0.6
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+
+  nodes = Array(110).fill().map(() => ({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4
   }));
 }
-
-window.addEventListener("resize", resize);
 resize();
+window.onresize = resize;
 
 function draw() {
-  ctx.clearRect(0, 0, width, height);
-  for (let p of points) {
-    p.x += p.vx;
-    p.y += p.vy;
-    if (p.x < 0 || p.x > width) p.vx *= -1;
-    if (p.y < 0 || p.y > height) p.vy *= -1;
+  ctx.clearRect(0, 0, W, H);
+
+  // points
+  nodes.forEach(n => {
+    n.x += n.vx;
+    n.y += n.vy;
+
+    if (n.x < 0 || n.x > W) n.vx *= -1;
+    if (n.y < 0 || n.y > H) n.vy *= -1;
 
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-    ctx.fillStyle = "#00e6ac";
+    ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(0, 230, 172, 0.9)";
     ctx.fill();
-  }
+  });
 
-  for (let i = 0; i < points.length; i++) {
-    for (let j = i + 1; j < points.length; j++) {
-      const dx = points[i].x - points[j].x;
-      const dy = points[i].y - points[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 130) {
-        ctx.beginPath();
-        ctx.moveTo(points[i].x, points[i].y);
-        ctx.lineTo(points[j].x, points[j].y);
-        ctx.strokeStyle = "rgba(0, 230, 172, 0.08)";
+  // lines
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x;
+      const dy = nodes[i].y - nodes[j].y;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < 120) {
+        ctx.strokeStyle = "rgba(0, 230, 172, 0.05)";
         ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
         ctx.stroke();
       }
     }
   }
+
   requestAnimationFrame(draw);
 }
-
 draw();
 
-// --- 2. Lógica nueva para el subtítulo dinámico ---
-document.addEventListener("DOMContentLoaded", function() {
-  const words = [
-    "Data Engineer",
-    "Financial Analyst",
-    "Python Developer",
-    "BigQuery & SQL",
-    "Power BI & Dashboards",
-    "ETL Automation"
-  ];
-  let i = 0;
-  let j = 0;
-  let currentWord = "";
-  let isDeleting = false;
-  const target = document.getElementById("subtitle-text");
 
-  function type() {
-    currentWord = words[i];
-    
-    if (isDeleting) {
-      // Borrando
-      target.textContent = currentWord.substring(0, j--);
-    } else {
-      // Escribiendo
-      target.textContent = currentWord.substring(0, j++);
-    }
+// --- typing subtitle ---
+const words = [
+  "Data Engineer",
+  "Python Developer",
+  "SQL & BigQuery Specialist",
+  "Automation & ETL",
+  "Analytics & BI"
+];
 
-    // Comprobar si terminó de escribir o borrar
-    if (!isDeleting && j === currentWord.length) {
-      // Terminó de escribir, pausa y empieza a borrar
-      isDeleting = true;
-      setTimeout(type, 2000); // Pausa antes de borrar
-    } else if (isDeleting && j === 0) {
-      // Terminó de borrar, pasa a la siguiente palabra
-      isDeleting = false;
-      i = (i + 1) % words.length; // Va a la siguiente palabra (o vuelve al inicio)
-      setTimeout(type, 500); // Pausa antes de escribir la nueva
-    } else {
-      // Sigue escribiendo o borrando
-      const typeSpeed = isDeleting ? 50 : 100; // Más rápido borrando
-      setTimeout(type, typeSpeed);
-    }
+let i = 0, j = 0;
+let isDeleting = false;
+const el = document.getElementById("subtitle-text");
+
+function type() {
+  const word = words[i];
+
+  el.textContent = isDeleting 
+    ? word.substring(0, j--)
+    : word.substring(0, j++);
+
+  if (!isDeleting && j === word.length) {
+    setTimeout(() => { isDeleting = true; type(); }, 1300);
+    return;
   }
-  
-  // Inicia el efecto
-  type();
-});
+
+  if (isDeleting && j === 0) {
+    i = (i + 1) % words.length;
+    isDeleting = false;
+  }
+
+  setTimeout(type, isDeleting ? 50 : 90);
+}
+type();
