@@ -6,101 +6,109 @@
   <title>Santiago Paulin | Data Engineer</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
   <canvas id="network"></canvas>
 
-  <nav class="navbar">
-    <div class="logo">SP<span class="dot">.</span></div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-    </ul>
-  </nav>
-
-  <main>
+  <main class="dashboard">
     
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <p class="greeting">Hi, my name is</p>
-        <h1 class="glitch-effect">Santiago Paulin.</h1>
-        <h2><span id="subtitle">Data Engineer</span></h2>
+    <aside class="sidebar">
+      <div class="profile-card glass-panel">
+        <h1 class="name">Santiago Paulin</h1>
+        <h2 class="role">Data Engineer</h2>
         <p class="bio">
-          Data Engineer specialized in cloud pipelines, ETLs, automations and large-scale analytics.
-          I design scalable workflows using Python, BigQuery, SQL, GCP and modern data engineering best practices.
+          Specialized in cloud pipelines, ETLs, and large-scale analytics. Designing scalable workflows with Python, BigQuery & GCP.
         </p>
         
-        <div class="tech-stack-container">
-           <div class="tech-item"><img src="imgs/python.png" alt="Python"><span>Python</span></div>
-           <div class="tech-item"><img src="imgs/sql.png" alt="SQL"><span>SQL</span></div>
-           <div class="tech-item"><img src="imgs/aws.png" alt="AWS"><span>AWS</span></div>
-           <div class="tech-item"><img src="imgs/pbi.png" alt="PowerBI"><span>PowerBI</span></div>
-           <div class="tech-item"><img src="imgs/pyspark.png" alt="PySpark"><span>PySpark</span></div>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/tu-usuario" target="_blank" class="btn-social"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://github.com/santipaulin97-sudo" target="_blank" class="btn-social"><i class="fab fa-github"></i> GitHub</a>
         </div>
       </div>
-    </section>
 
-    <section id="experience" class="section-pad">
-      <h3 class="section-heading"><span>01.</span> Experience</h3>
+      <div class="languages-card glass-panel">
+        <h3><i class="fas fa-globe"></i> Languages</h3>
+        <div class="lang-grid">
+          <span class="lang-tag">🇪🇸 Spanish (Native)</span>
+          <span class="lang-tag">🇺🇸 English (Adv)</span>
+          <span class="lang-tag">🇮🇹 Italian</span>
+          <span class="lang-tag">🇫🇷 French</span>
+          <span class="lang-tag">🇧🇷 Portuguese</span>
+        </div>
+      </div>
+
+      <div class="skills-card glass-panel">
+        <h3><i class="fas fa-code"></i> Tech Stack</h3>
+        <div class="tech-grid">
+           <div class="tech-icon" title="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"></div>
+           <div class="tech-icon" title="SQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="SQL"></div>
+           <div class="tech-icon" title="GCP"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP"></div>
+           <div class="tech-icon" title="AWS"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" style="filter: invert(1);"></div>
+           <div class="tech-icon" title="PowerBI"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="PBI"></div>
+           <div class="tech-icon" title="PySpark"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" alt="Spark"></div>
+           <div class="tech-icon" title="Git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"></div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
       
-      <div class="experience-grid">
-        <div class="job-card">
+      <div class="section-block">
+        <h3 class="section-title"><span>01.</span> Experience</h3>
+        
+        <div class="job-card glass-panel">
           <div class="job-header">
-            <img src="imgs/meli_logo.png" alt="MeLi" class="company-icon"> <div>
-              <h4>Data Engineer — <span class="highlight">Mercado Libre</span></h4>
-              <p class="job-date">Current</p>
-            </div>
+            <h4>Data Engineer — <span class="highlight">Mercado Libre</span></h4>
+            <span class="date">Current</span>
           </div>
-          <p class="job-desc">Warehouse analytics, automations, BigQuery pipelines, Python ETLs.</p>
+          <p>Warehouse analytics, automations, BigQuery pipelines, Python ETLs. Optimizing logistics SLAs.</p>
         </div>
 
-        <div class="job-card">
+        <div class="job-card glass-panel">
           <div class="job-header">
-            <div>
-              <h4>Financial Analyst — <span class="highlight">PFS Global</span></h4>
-              <p class="job-date">Previous</p>
-            </div>
+            <h4>Financial Analyst — <span class="highlight">PFS Global</span></h4>
+            <span class="date">Previous</span>
           </div>
-          <p class="job-desc">SQL dashboards, KPIs, margins, cost analytics for US-based clients.</p>
+          <p>SQL dashboards, KPIs, margins, cost analytics for US-based clients.</p>
         </div>
 
-        <div class="job-card">
-           <div class="job-header">
-            <div>
-              <h4>Financial Analyst — <span class="highlight">Accenture</span></h4>
-              <p class="job-date">Previous</p>
-            </div>
+        <div class="job-card glass-panel">
+          <div class="job-header">
+            <h4>Financial Analyst — <span class="highlight">Accenture</span></h4>
+            <span class="date">Previous</span>
           </div>
-          <p class="job-desc">Forecasting, automation, BI reporting for North America Finance.</p>
+          <p>Forecasting, automation, BI reporting for North America Finance.</p>
         </div>
       </div>
-    </section>
 
-    <section id="portfolio" class="section-pad">
-      <h3 class="section-heading"><span>02.</span> Portfolio</h3>
-      <div class="project-grid">
-        <div class="project-card">
-          <h5>ETL Performance Monitor</h5>
-          <p>Automated dashboard to track latency in data pipelines.</p>
-          <div class="tags"><span>Python</span><span>SQL</span></div>
-        </div>
-        <div class="project-card">
-          <h5>Travel Bot API</h5>
-          <p>Backend API for travel automation and booking management.</p>
-          <div class="tags"><span>FastAPI</span><span>AWS</span></div>
+      <div class="section-block">
+        <h3 class="section-title"><span>02.</span> Select Projects</h3>
+        <div class="projects-grid">
+          
+          <div class="project-card glass-panel">
+            <h5>ETL Performance Monitor</h5>
+            <p>Real-time dashboard for pipeline latency tracking.</p>
+            <div class="tags"><span>Python</span><span>SQL</span></div>
+          </div>
+
+          <div class="project-card glass-panel">
+            <h5>Travel Bot API</h5>
+            <p>Auto-booking management system backend.</p>
+            <div class="tags"><span>FastAPI</span><span>AWS</span></div>
+          </div>
+
         </div>
       </div>
-    </section>
 
+    </section>
   </main>
 
   <footer>
-    <p>Designed & Built by Santiago Paulin</p>
+    <p>Designed by Santiago Paulin</p>
   </footer>
 
   <script src="app.js"></script>
