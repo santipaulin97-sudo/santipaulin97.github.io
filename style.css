@@ -1,128 +1,120 @@
 /* ====== VARIABLES & RESET ====== */
 :root {
   --bg-color: #0a192f;
-  --text-primary: #e6f1ff;
-  --text-secondary: #8892b0;
-  --accent: #64ffda; /* Tu color verde neon */
-  --panel-bg: rgba(17, 34, 64, 0.7); /* Fondo de tarjetas */
-  --panel-border: rgba(255, 255, 255, 0.1);
+  --text-main: #ccd6f6;
+  --text-mute: #8892b0;
+  --accent: #64ffda; /* Verde Neon */
+  --glass-bg: rgba(17, 34, 64, 0.75);
+  --border: rgba(255, 255, 255, 0.1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
 body {
   background: var(--bg-color);
-  color: var(--text-primary);
+  color: var(--text-main);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra todo verticalmente */
+  overflow-x: hidden;
+  padding-bottom: 50px; /* Espacio al final */
 }
 
-/* CANVA FIXED BEHIND */
-canvas#network {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-}
+/* CANVAS DE FONDO */
+canvas#network { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
-/* ====== DASHBOARD LAYOUT (La clave del cambio) ====== */
-.dashboard {
-  display: grid;
-  grid-template-columns: 350px 1fr; /* Sidebar fija de 350px, el resto contenido */
-  gap: 30px;
-  max-width: 1200px;
+/* ====== CONTENEDOR PRINCIPAL ====== */
+.main-container {
+  max-width: 1000px;
   margin: 40px auto;
   padding: 0 20px;
-  align-items: start; /* Alineación arriba */
 }
 
-/* ====== ESTILO PANELES (CRISTAL) ====== */
-.glass-panel {
-  background: var(--panel-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--panel-border);
+/* ====== CAJAS DE CRISTAL (ESTILO GENÉRICO) ====== */
+.glass-box {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 20px;
-  box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* ====== SIDEBAR (IZQUIERDA) ====== */
-.sidebar { position: sticky; top: 40px; } /* Se queda quieta al bajar */
+/* ====== HEADER ====== */
+.header-section { text-align: center; }
+.header-section h1 { font-size: 2.5rem; color: #fff; margin-bottom: 5px; }
 
-.name { font-size: 2.2rem; font-weight: 700; color: #fff; line-height: 1.1; }
-.role { font-size: 1.2rem; color: var(--accent); font-family: 'Fira Code', monospace; margin: 5px 0 15px 0; }
-.bio { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
-
-/* Botones Sociales */
-.social-links { display: flex; gap: 10px; }
-.btn-social {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px;
-  background: transparent;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  text-decoration: none;
-  border-radius: 5px;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.85rem;
-  transition: 0.3s;
+/* Efecto Typing cursor */
+.header-section h2 { 
+  font-size: 1.4rem; color: var(--accent); font-family: 'Fira Code', monospace; margin-bottom: 20px; min-height: 1.6em;
 }
-.btn-social:hover { background: rgba(100, 255, 218, 0.1); }
+.txt-type > .txt { border-right: 0.1rem solid var(--accent); }
 
-/* Idiomas */
-.lang-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.lang-tag {
-  background: rgba(255,255,255,0.05);
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+.intro-badges { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
+.intro-badges span {
+  background: rgba(100, 255, 218, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--accent);
 }
 
-/* Tech Grid (Logos) */
-.tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 15px; }
-.tech-icon {
-  background: rgba(255,255,255,0.05);
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-}
-.tech-icon img { width: 100%; height: auto; max-width: 30px; }
-.tech-icon:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+.bio-text { max-width: 700px; margin: 0 auto 20px auto; color: var(--text-mute); line-height: 1.6; }
 
-/* ====== CONTENT (DERECHA) ====== */
-.section-title {
-  font-size: 1.5rem; color: #fff; margin-bottom: 20px; display: flex; align-items: center;
-}
-.section-title span { color: var(--accent); font-family: 'Fira Code', monospace; font-size: 1.2rem; margin-right: 10px; }
+/* IDIOMAS */
+.languages { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.languages span { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #fff; background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; }
 
-/* Tarjetas de Trabajo */
-.job-card { padding: 20px; transition: 0.3s; }
-.job-card:hover { border-color: var(--accent); transform: translateX(5px); }
-.job-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
-.job-header h4 { font-size: 1.1rem; color: #e6f1ff; }
+/* ====== GRID LAYOUT (2 COLUMNAS) ====== */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr; /* Izquierda más ancha */
+  gap: 20px;
+}
+
+h3 { color: #fff; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+/* LISTA WHAT I DO */
+.checklist { list-style: none; }
+.checklist li { margin-bottom: 10px; color: var(--text-mute); font-size: 0.95rem; }
+
+/* EXPERIENCIA */
+.job-item { margin-bottom: 20px; }
+.job-item h4 { color: #e6f1ff; font-size: 1.1rem; margin-bottom: 5px; }
 .highlight { color: var(--accent); }
-.date { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-secondary); }
+.job-details { font-size: 0.9rem; color: var(--text-mute); line-height: 1.5; }
 
-/* Grid de Proyectos */
-.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-.project-card h5 { color: #fff; font-size: 1.1rem; margin-bottom: 10px; }
-.project-card .tags { margin-top: 15px; }
-.project-card .tags span { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 0.75rem; margin-right: 10px; }
+/* ====== TECH STACK (SOLUCIÓN AL PROBLEMA GIGANTE) ====== */
+.tech-grid-mini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
 
-/* Footer */
-footer { text-align: center; padding: 20px; color: var(--text-secondary); font-size: 0.8rem; grid-column: 1 / -1; }
+.tech-mini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 70px; /* Ancho fijo para cada item */
+}
 
-/* ====== MOBILE ====== */
-@media (max-width: 850px) {
-  .dashboard { grid-template-columns: 1fr; margin-top: 20px; }
-  .sidebar { position: relative; top: 0; }
-  .projects-grid { grid-template-columns: 1fr; }
+/* ESTA ES LA LÍNEA MÁGICA QUE ARREGLA LOS LOGOS */
+.tech-mini img {
+  width: 40px !important; 
+  height: 40px !important;
+  object-fit: contain; /* Mantiene proporción */
+}
+
+.tech-mini span { font-size: 0.75rem; color: var(--text-mute); font-family: 'Fira Code', monospace; }
+
+/* CONTACTO */
+.contact-box { display: flex; flex-direction: column; gap: 12px; }
+.contact-link {
+  color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 10px; padding: 10px;
+  background: rgba(255,255,255,0.03); border-radius: 6px; transition: 0.3s;
+}
+.contact-link:hover { background: rgba(100, 255, 218, 0.1); color: var(--accent); }
+.footer-note { text-align: center; margin-top: 10px; font-size: 0.8rem; color: var(--text-mute); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .grid-layout { grid-template-columns: 1fr; }
+  .intro-badges { font-size: 0.8rem; }
 }
