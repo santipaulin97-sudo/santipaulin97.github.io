@@ -82,9 +82,23 @@ canvas#network { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-
   border-radius: 3px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
-.lang-item div { display: flex; flex-direction: column; line-height: 1.2; }
-.lang-item strong { font-size: 0.9rem; color: #fff; }
-.lang-item span { font-size: 0.75rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; }
+.lang-item div { 
+  display: flex; 
+  flex-direction: column; 
+  line-height: 1.2; 
+  gap: 4px;          /* ← agrega espacio entre idioma y nivel */
+}
+
+.lang-item strong { 
+  font-size: 0.9rem; 
+  color: #fff; 
+}
+
+.lang-item span { 
+  font-size: 0.75rem; 
+  color: var(--text-secondary); 
+  font-family: 'Fira Code', monospace; 
+}
 
 /* TECH GRID */
 .tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 15px; }
