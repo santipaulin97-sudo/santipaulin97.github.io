@@ -19,37 +19,192 @@
       --panel-bg: rgba(17, 34, 64, 0.85);
       --panel-border: rgba(255, 255, 255, 0.1);
     }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background: var(--bg-color); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
+    
+    body { 
+      background: var(--bg-color); 
+      color: var(--text-primary); 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      overflow-x: hidden; 
+    }
+
     canvas#network { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     
     /* LAYOUT */
-    .dashboard { display: grid; grid-template-columns: 350px 1fr; gap: 30px; width: 100%; max-width: 1250px; margin: 40px auto; padding: 0 20px; align-items: start; }
-    .glass-panel { background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid var(--panel-border); border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7); }
+    .dashboard { 
+      display: grid; 
+      grid-template-columns: 360px 1fr; 
+      gap: 30px; 
+      width: 100%; 
+      max-width: 1250px; 
+      margin: 40px auto; 
+      padding: 0 20px; 
+      align-items: start; 
+    }
+
+    .glass-panel { 
+      background: var(--panel-bg); 
+      backdrop-filter: blur(12px); 
+      border: 1px solid var(--panel-border); 
+      border-radius: 12px; 
+      padding: 25px; 
+      margin-bottom: 20px; 
+      box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7); 
+    }
+
     .sidebar { position: sticky; top: 20px; }
 
-    /* PROFILE */
-    .name { font-size: 2rem; font-weight: 700; color: #fff; line-height: 1.1; }
-    .role { font-size: 1.1rem; color: var(--accent); font-family: 'Fira Code', monospace; margin: 5px 0 15px 0; }
+    /* ====== BRANDING & LOGO (INICIO) ====== */
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .logo-box {
+      width: 55px;
+      height: 55px;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.4rem;
+      border-radius: 10px;
+      position: relative;
+      background: rgba(100, 255, 218, 0.05);
+      flex-shrink: 0;
+    }
+
+    .logo-box::before {
+      content: '{ }';
+      position: absolute;
+      top: -12px;
+      background: var(--bg-color);
+      font-size: 0.65rem;
+      padding: 0 5px;
+      letter-spacing: 1px;
+    }
+
+    .brand-text .name {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .status-badge {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* PROFILE & ROLE */
+    .role { 
+      font-size: 1.1rem; 
+      color: var(--text-primary); 
+      font-family: 'Fira Code', monospace; 
+      margin: 15px 0; 
+      display: block;
+    }
+
+    .role .txt-type { 
+      color: var(--accent); 
+      font-weight: 600; 
+      border-right: 2px solid var(--accent);
+      padding-right: 5px;
+    }
+
     .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
-    .badges span { background: rgba(100, 255, 218, 0.1); color: var(--accent); font-size: 0.7rem; padding: 4px 8px; border-radius: 15px; border: 1px solid rgba(100,255,218,0.3); }
+    .badges span { 
+      background: rgba(100, 255, 218, 0.1); 
+      color: var(--accent); 
+      font-size: 0.7rem; 
+      padding: 4px 8px; 
+      border-radius: 15px; 
+      border: 1px solid rgba(100,255,218,0.3); 
+    }
+
     .bio { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
 
     /* BOTONES SOCIALES */
     .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn-social { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.85rem; transition: 0.3s; min-width: 100px; }
+    .btn-social { 
+      flex: 1; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 8px; 
+      padding: 10px; 
+      background: transparent; 
+      border: 1px solid var(--accent); 
+      color: var(--accent); 
+      text-decoration: none; 
+      border-radius: 6px; 
+      font-family: 'Fira Code', monospace; 
+      font-size: 0.85rem; 
+      transition: 0.3s; 
+      min-width: 100px; 
+    }
     .btn-social:hover { background: rgba(100, 255, 218, 0.1); transform: translateY(-2px); }
     .btn-cv { background: rgba(100, 255, 218, 0.1); border-color: var(--accent); color: #fff; } 
     .btn-cv:hover { background: var(--accent); color: var(--bg-color); }
 
     /* LANGS & TECH */
-    .lang-list { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-    .lang-item { display: flex; align-items: center; gap: 12px; padding: 6px; background: rgba(255,255,255,0.03); border-radius: 6px; }
-    .lang-item img { width: 24px; height: auto; border-radius: 2px; }
-    .lang-item strong { font-size: 0.85rem; color: #fff; } .lang-item span { font-size: 0.7rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; }
+    .lang-list { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+    .lang-item { 
+      display: flex; 
+      align-items: center; 
+      gap: 15px; 
+      padding: 8px; 
+      background: rgba(255,255,255,0.03); 
+      border-radius: 8px; 
+    }
+    .lang-item img { width: 28px; height: 18px; object-fit: cover; border-radius: 2px; }
+    .lang-item div { display: flex; flex-direction: column; line-height: 1.2; }
+    .lang-item strong { font-size: 0.9rem; color: #fff; }
+    .lang-item span { font-size: 0.75rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; margin-left: 5px; }
     
     .tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
-    .tech-icon { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 8px; display: flex; align-items: center; justify-content: center; transition: 0.3s; border: 1px solid transparent; aspect-ratio: 1; }
+    .tech-icon { 
+      background: rgba(255,255,255,0.05); 
+      border-radius: 8px; 
+      padding: 8px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      transition: 0.3s; 
+      border: 1px solid transparent; 
+      aspect-ratio: 1; 
+    }
     .tech-icon img { width: 32px !important; height: 32px !important; object-fit: contain; }
     .tech-icon:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); transform: translateY(-3px); }
 
@@ -59,9 +214,10 @@
     
     .job-card { padding: 20px; margin-bottom: 15px; transition: 0.3s; border-left: 3px solid transparent; }
     .job-card:hover { border-left-color: var(--accent); transform: translateX(5px); }
-    .job-header h4 { font-size: 1rem; color: #e6f1ff; } .highlight { color: var(--accent); font-weight: 600; }
+    .job-header h4 { font-size: 1rem; color: #e6f1ff; } 
+    .highlight { color: var(--accent); font-weight: 600; }
     .date { font-family: 'Fira Code', monospace; font-size: 0.75rem; color: var(--text-secondary); float: right; }
-    .job-desc { font-size: 0.9rem; color: var(--text-secondary); margin-top: 5px; }
+    .job-desc { font-size: 0.9rem; color: var(--text-secondary); margin-top: 5px; line-height: 1.5; }
 
     /* PROJECTS */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
@@ -78,7 +234,11 @@
     .tags span { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 0.7rem; background: rgba(100, 255, 218, 0.1); padding: 3px 6px; border-radius: 4px; }
 
     footer { text-align: center; padding: 30px; color: var(--text-secondary); font-size: 0.8rem; width: 100%; }
-    @media (max-width: 900px) { .dashboard { grid-template-columns: 1fr; margin-top: 20px; } }
+    
+    @media (max-width: 900px) { 
+      .dashboard { grid-template-columns: 1fr; margin-top: 20px; } 
+      .sidebar { position: relative; top: 0; }
+    }
   </style>
 </head>
 
@@ -88,43 +248,41 @@
 
   <main class="dashboard">
     <aside class="sidebar">
-  <div class="profile-card glass-panel">
-    
-    <div class="brand-container">
-      <div class="logo-box">
-        <span>SP</span>
-      </div>
-      <div class="brand-text">
-        <h1 class="name">Santiago Paulin</h1>
-        <div class="status-badge">
-          <span class="dot"></span> Online / Available
+      <div class="profile-card glass-panel">
+        <div class="brand-container">
+          <div class="logo-box">
+            <span>SP</span>
+          </div>
+          <div class="brand-text">
+            <h1 class="name">Santiago Paulin</h1>
+            <div class="status-badge">
+              <span class="dot"></span> Online / Available
+            </div>
+          </div>
+        </div>
+
+        <h2 class="role">
+           I am a <span class="txt-type" data-wait="2000" data-words='["Data Engineer", "Risk Specialist", "Cloud Architect"]'></span>
+        </h2>
+
+        <div class="badges">
+          <span>💡 E-commerce</span>
+          <span>📦 Risk Controls</span>
+          <span>☁️ GCP Pipelines</span>
+        </div>
+
+        <p class="bio">
+          Hi there! 👋 I turn complex operational data into <strong>scalable, automated solutions</strong>. 
+          <br><br>
+          Specialized in <strong>Risk Management</strong> and <strong>Logistics Efficiency</strong>.
+        </p>
+
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/santiagopaulin" target="_blank" class="btn-social"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://github.com/santipaulin97-sudo" target="_blank" class="btn-social"><i class="fab fa-github"></i> GitHub</a>
+          <a href="CV_SANTIAGO_PAULIN.pdf" download class="btn-social btn-cv"><i class="fas fa-file-download"></i> CV</a>
         </div>
       </div>
-    </div>
-
-    <h2 class="role">
-       I am a <span class="txt-type" data-wait="2000" data-words='["Data Engineer", "Risk Specialist", "Cloud Architect"]'></span>
-    </h2>
-
-    <div class="badges">
-      <span>💡 E-commerce</span>
-      <span>📦 Risk Controls</span>
-      <span>☁️ GCP Pipelines</span>
-    </div>
-
-    <p class="bio">
-      Hi there! 👋 I turn complex operational data into <strong>scalable, automated solutions</strong>. 
-      <br><br>
-      Specialized in <strong>Risk Management</strong> and <strong>Logistics Efficiency</strong>.
-    </p>
-
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/santiagopaulin" target="_blank" class="btn-social"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      <a href="https://github.com/santipaulin97-sudo" target="_blank" class="btn-social"><i class="fab fa-github"></i> GitHub</a>
-      <a href="CV_SANTIAGO_PAULIN.pdf" download class="btn-social btn-cv"><i class="fas fa-file-download"></i> CV</a>
-    </div>
-  </div>
-</aside>
 
       <div class="languages-card glass-panel">
         <h3><i class="fas fa-globe"></i> Languages</h3>
@@ -138,43 +296,20 @@
       </div>
 
       <div class="skills-card glass-panel">
-  <h3><i class="fas fa-code"></i> Tech Stack</h3>
-  <div class="tech-grid">
-
-    <div class="tech-icon" title="Python">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
-    </div>
-
-    <div class="tech-icon" title="SQL">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg">
-    </div>
-
-    <div class="tech-icon" title="GCP">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg">
-    </div>
-    <div class="tech-icon" title="BigQuery">
-      <img src="https://www.vectorlogo.zone/logos/google_bigquery/google_bigquery-icon.svg">
-    </div>
-    <div class="tech-icon" title="Airflow">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg">
-    </div>
-    <div class="tech-icon" title="Snowflake">
-      <img src="https://www.vectorlogo.zone/logos/snowflake/snowflake-icon.svg">
-    </div>
-    <div class="tech-icon" title="AWS">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" style="filter: invert(1);">
-    </div>
-    <div class="tech-icon" title="PowerBI">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg">
-    </div>
-    <div class="tech-icon" title="Git">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg">
-    </div>
-    <div class="tech-icon" title="Pandas">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg">
-    </div>
-  </div>
-</div>
+        <h3><i class="fas fa-code"></i> Tech Stack</h3>
+        <div class="tech-grid">
+          <div class="tech-icon" title="Python"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"></div>
+          <div class="tech-icon" title="SQL"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"></div>
+          <div class="tech-icon" title="GCP"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"></div>
+          <div class="tech-icon" title="BigQuery"><img src="https://www.vectorlogo.zone/logos/google_bigquery/google_bigquery-icon.svg"></div>
+          <div class="tech-icon" title="Airflow"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg"></div>
+          <div class="tech-icon" title="Snowflake"><img src="https://www.vectorlogo.zone/logos/snowflake/snowflake-icon.svg"></div>
+          <div class="tech-icon" title="AWS"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" style="filter: invert(1);"></div>
+          <div class="tech-icon" title="PowerBI"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg"></div>
+          <div class="tech-icon" title="Git"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"></div>
+          <div class="tech-icon" title="Pandas"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"></div>
+        </div>
+      </div>
     </aside>
 
     <section class="content">
@@ -182,221 +317,36 @@
         <h3 class="section-title"><span>01.</span> Experience</h3>
         <div class="job-card glass-panel">
           <div class="job-header"><h4>Data Engineer — <span class="highlight">Mercado Libre</span></h4><span class="date">Current</span></div>
-          <p class="job-desc">Data Engineer in Risk Revenue Management. Automations, BigQuery pipelines, Python ETLs, and optimization of logistics SLAs & risk controls. Development of flows using Verdi Flow, 
-        n8n, and automated monitoring systems for operational risks..</p>
+          <p class="job-desc">Data Engineer in Risk Revenue Management. Automations, BigQuery pipelines, Python ETLs, and optimization of logistics SLAs & risk controls.</p>
         </div>
         <div class="job-card glass-panel">
           <div class="job-header"><h4>Financial Specialist — <span class="highlight">PFS Global</span></h4><span class="date">Previous</span></div>
-          <p class="job-desc">Forecasting, Income Statement and Balance Sheet analysis. SQL dashboards, KPIs, margin reporting, 
-        and cost analytics for US-based clients across multiple industries.</p>
+          <p class="job-desc">Forecasting, SQL dashboards, KPIs, and cost analytics for US-based clients across multiple industries.</p>
         </div>
         <div class="job-card glass-panel">
-          <div class="job-header"><h4>Data Engineer - Financial Analyst — <span class="highlight">Accenture</span></h4><span class="date">Previous</span></div>
-          <p class="job-desc"> Forecasting and financial automation for Accenture Italy. Managed KPIs, margins, and analytics 
-        for more than 200 contracts. Led reporting integrations during the acquisition of Ammagamma.</p>
+          <div class="job-header"><h4>Data Engineer - Finance — <span class="highlight">Accenture</span></h4><span class="date">Previous</span></div>
+          <p class="job-desc">Financial automation for Accenture Italy. Led reporting integrations during the acquisition of Ammagamma.</p>
         </div>
-        <div class="job-card glass-panel">
-        <div class="job-header">
-        <h4>Data Analyst — <span class="highlight">Dilcor</span></h4>
-        <span class="date">Previous</span>
-       </div>
-       <p class="job-desc">
-        SQL reporting, automated dashboards, Power BI visualizations, and financial analysis focused on balance sheet and income statement performance.
-       </p>
-       </div>
       </div>
 
       <div class="section-block">
-        <h3 class="section-title"><span>02.</span> Selected Projects</h3>
+        <h3 class="section-title"><span>02.</span> Projects</h3>
         <div class="projects-grid">
-          
           <div class="project-card glass-panel">
-            <div class="card-top">
-              <h5>🤖 Daily AI Stock Reporter</h5>
-              <a href="https://github.com/santipaulin97-sudo/StockMarket-" target="_blank" title="Ver Código">
-                <i class="fas fa-chart-line icon-link"></i>
-              </a>
-            </div>
-            <p>Auto-runs at 9 AM daily. Generates reports for Top 20 Global Companies with <strong>AI Sentiment Analysis</strong>.</p>
-            <div class="tags"><span>Python Cron</span><span>NLP</span><span>YahooFin</span></div>
+            <div class="card-top"><h5>🤖 Daily AI Stock Reporter</h5><a href="#" target="_blank"><i class="fas fa-chart-line icon-link"></i></a></div>
+            <p>Auto-runs at 9 AM daily. Generates reports with AI Sentiment Analysis.</p>
+            <div class="tags"><span>Python</span><span>NLP</span><span>YahooFin</span></div>
           </div>
-
-        <div class="project-card glass-panel">
-  <div class="card-top">
-    <h5>💰 Gold Price AI Predictor</h5>
-    <a href="https://github.com/santipaulin97-sudo/Gold-Prediction" target="_blank" title="Ver Código">
-      <i class="fas fa-coins icon-link"></i>
-    </a>
-  </div>
-  <p>Gold prediction based on LLM, inflation history, and geopolitical events (wars/crises). Uses ML to forecast price impact.</p>
-  <div class="tags">
-    <span>LLMs</span><span>Python</span><span>Inflation Analytics</span>
-  </div>
-</div>
-
-
-
-         <div class="project-card glass-panel">
-  <div class="card-top">
-    <h5>🥈 Silver Price Report and AI Predictor</h5>
-    <a href="https://github.com/santipaulin97-sudo/Silver_Price" target="_blank" title="Ver Código">
-      <i class="fas fa-coins icon-link"></i>
-    </a>
-  </div>
-  <p>Silver Report based on Api from Yfinance and a prediction based on LLM, inflation history, and geopolitical events (wars/crises). Uses ML to forecast price impact.</p>
-  <div class="tags"><span>LLMs</span><span>Python</span><span>Inflation Analytics</span></div>
-</div>
-
-        <div class="project-card glass-panel">
-  <div class="card-top">
-    <h5>📊 Credit Risk Predictor</h5>
-    <a href="https://github.com/santipaulin97-sudo/credit_risk" target="_blank" title="View Code">
-      <i class="fas fa-file-code icon-link"></i>
-    </a>
-  </div>
-  
-  <p>
-    Tool for financial analysts to evaluate loan applications. Predicts default risk and auto-generates a detailed <strong>professional PDF report</strong> with financial analysis, amortization, and risk justification.
-  </p>
-  
-  <div class="tags">
-    <span>Python</span>
-    <span>Machine Learning</span>
-    <span>FPDF</span>
-    <span>RandomForest</span>
-  </div>
-</div>
-
-
           <div class="project-card glass-panel">
-            <div class="card-top">
-              <h5>⚡ ETL Performance Monitor</h5>
-              <a href="https://github.com/santipaulin97-sudo" target="_blank" title="Ver Perfil">
-                <i class="fas fa-tachometer-alt icon-link"></i>
-              </a>
-            </div>
-            <p>Real-time dashboard to track latency and failures in large-scale data pipelines.</p>
-            <div class="tags"><span>Python</span><span>SQL</span><span>BigQuery</span></div>
+            <div class="card-top"><h5>📊 Credit Risk Predictor</h5><a href="#" target="_blank"><i class="fas fa-file-code icon-link"></i></a></div>
+            <p>Predicts default risk and auto-generates professional PDF reports.</p>
+            <div class="tags"><span>ML</span><span>RandomForest</span><span>FPDF</span></div>
           </div>
-
-   <!-- Recruiting AI Workflow (n8n) -->
-<div class="project-card glass-panel">
-  <div class="card-top" style="display:flex; align-items:center; gap:8px;">
-    <h5 style="display:flex; align-items:center; gap:6px;">
-      <img src="https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png" 
-           style="width:40px; height:auto; opacity:0.85;">
-      Recruiting AI Workflow
-    </h5>
-
-    <a href="https://github.com/santipaulin97-sudo/Recruiting-AI-Workflow-n8n-" 
-       target="_blank" 
-       title="View Code">
-      <i class="fas fa-robot icon-link"></i>
-    </a>
-  </div>
-
-  <p>
-    End-to-end recruiting pipeline built with <strong>n8n + GPT-4o</strong>.  
-    Parses resumes, extracts years of experience, validates job match, 
-    updates Google Sheets, stores files in Drive and sends automated 
-    pass/fail emails to recruiters & candidates.
-  </p>
-
-  <div class="tags">
-    <span>n8n</span>
-    <span>GPT-4o</span>
-    <span>Resume Parsing</span>
-    <span>Google Sheets</span>
-    <span>Automation</span>
-  </div>
-</div>
-    
-
-
- <div class="project-card glass-panel">
-  <div class="card-top" style="display:flex; align-items:center; gap:8px;">
-    <h5 style="display:flex; align-items:center; gap:8px;">
-      <img src="https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png" 
-           style="width:40px; height:auto; opacity:0.95;">
-      n8n File Validation Workflow
-    </h5>
-
-    <a href="https://github.com/santipaulin97-sudo/n8n-file-validation-workflow" 
-       target="_blank" title="View Code">
-      <i class="fas fa-cogs icon-link"></i>
-    </a>
-  </div>
-
-  <p>
-    End-to-end automation built in <strong>n8n</strong> to validate multi-sheet XLSX files, 
-    merge results, trigger alerts, update Google Sheets, and integrate with VerdiCode.  
-    Includes JavaScript validations, workflow orchestration, and automated reporting.
-  </p>
-
-  <div class="tags">
-    <span>n8n</span>
-    <span>JavaScript</span>
-    <span>Google Sheets API</span>
-    <span>Automation</span>
-  </div>
-</div>
-
-
-   <div class="project-card glass-panel">
-  <div class="card-top">
-    <h5>💵 Bot Dolar API</h5>
-    <a href="https://github.com/santipaulin97-sudo/Bot-Dolar-Api" target="_blank" title="Ver Código">
-      <i class="fas fa-money-bill-wave icon-link"></i>
-    </a>
-  </div>
-  <p>
-  Developed a <strong>robust backend service</strong> using Python to 
-  continuously track volatile Argentine exchange rates (<strong>Official</strong> 
-  and <strong>Blue</strong>). The system integrates with a <strong>REST API</strong>, 
-  performs automated data validation, and triggers alerts via Slack/Email when 
-  volatility thresholds are exceeded.
-  </p>
-  <div class="tags"><span>Python</span><span>API Rest</span><span>Automation</span></div>
-</div>
-
           <div class="project-card glass-panel">
-  <div class="card-top">
-    <h5>🏦 PyME Bank Reconciliation Bot</h5>
-    <a href="https://github.com/santipaulin97-sudo/pyme_bank_reconciliation" target="_blank" title="View Code">
-      <i class="fas fa-coins icon-link"></i>
-    </a>
-  </div>
-  
-  <p>
-    Automation tool designed for SMEs to eliminate manual reconciliation errors. Compares internal system records against bank statements (transfers) using **Pandas Merge** logic (Date + Amount) and flags non-conciliated transactions.
-  </p>
-  
-  <div class="tags">
-    <span>Python</span>
-    <span>Pandas</span>
-    <span>Verdi Flow</span>
-    <span>Automation</span>
-    <span>Finance</span>
-  </div>
-</div>
-
-       <div class="project-card glass-panel">
-  <div class="card-top">
-    <h5>📊 GCP Automated Weekly Reporting</h5>
-    <a href="https://github.com/santipaulin97-sudo/Weekly_Report_GCP" 
-       target="_blank" 
-       title="View Source Code">
-      <i class="fas fa-database icon-link"></i>
-    </a>
-  </div>
-  <p>
-    Built an <strong>automated weekly reporting pipeline on GCP</strong> using Python and BigQuery.
-    The solution ingests, validates, and transforms data to generate stakeholder-ready reports,
-    including automated data quality checks and scheduled delivery.
-  </p>
-</div>
-    
-
+            <div class="card-top"><h5>🤖 Recruiting AI Workflow</h5><a href="#" target="_blank"><i class="fas fa-robot icon-link"></i></a></div>
+            <p>End-to-end recruiting pipeline built with n8n + GPT-4o.</p>
+            <div class="tags"><span>n8n</span><span>GPT-4o</span><span>Automation</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -405,19 +355,50 @@
   <footer><p>Designed & Built by Santiago Paulin</p></footer>
 
   <script>
+    // 1. Fondo de Red
     const canvas = document.getElementById("network");
     const ctx = canvas.getContext("2d");
     let w, h, nodes;
-    function resize() { w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; nodes=Array(Math.min(80, Math.floor(w*h/15000))).fill().map(()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.5,vy:(Math.random()-0.5)*0.5})); }
+    function resize() { 
+      w=canvas.width=window.innerWidth; 
+      h=canvas.height=window.innerHeight; 
+      nodes=Array(Math.min(80, Math.floor(w*h/15000))).fill().map(()=>({
+        x:Math.random()*w, y:Math.random()*h, vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5
+      })); 
+    }
     resize(); window.addEventListener("resize", resize);
-    function draw() { ctx.clearRect(0,0,w,h); nodes.forEach(n=>{ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>w)n.vx*=-1; if(n.y<0||n.y>h)n.vy*=-1; ctx.beginPath(); ctx.arc(n.x,n.y,2,0,Math.PI*2); ctx.fillStyle="#64ffda"; ctx.fill(); });
-      for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){ let d=Math.hypot(nodes[i].x-nodes[j].x, nodes[i].y-nodes[j].y); if(d<120){ ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.strokeStyle=`rgba(100,255,218,0.15)`; ctx.stroke(); }} requestAnimationFrame(draw); }
+    function draw() { 
+      ctx.clearRect(0,0,w,h); 
+      nodes.forEach(n=>{ 
+        n.x+=n.vx; n.y+=n.vy; 
+        if(n.x<0||n.x>w)n.vx*=-1; if(n.y<0||n.y>h)n.vy*=-1; 
+        ctx.beginPath(); ctx.arc(n.x,n.y,2,0,Math.PI*2); ctx.fillStyle="#64ffda"; ctx.fill(); 
+      });
+      for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){ 
+        let d=Math.hypot(nodes[i].x-nodes[j].x, nodes[i].y-nodes[j].y); 
+        if(d<120){ 
+          ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); 
+          ctx.strokeStyle=`rgba(100,255,218,0.15)`; ctx.stroke(); 
+        }
+      } 
+      requestAnimationFrame(draw); 
+    }
     draw();
-    
-    /* TypeWriter */
+
+    // 2. Efecto de Escritura
     const TypeWriter=function(t,e,i=3000){this.t=t,this.e=e,this.tx='',this.w=0,this.wt=parseInt(i,10),this.ty(),this.d=!1};
-    TypeWriter.prototype.ty=function(){const t=this.w%this.e.length,s=this.e[t];this.d?this.tx=s.substring(0,this.tx.length-1):this.tx=s.substring(0,this.tx.length+1),this.t.innerHTML=`<span class="txt">${this.tx}</span>`;let i=100;this.d&&(i/=2),this.d||this.tx!==s?this.d&&''===this.tx&&(this.d=!1,this.w++,i=500):(i=this.wt,this.d=!0),setTimeout(()=>this.ty(),i)};
-    document.addEventListener('DOMContentLoaded',()=>new TypeWriter(document.querySelector('.txt-type'),JSON.parse(document.querySelector('.txt-type').getAttribute('data-words')),document.querySelector('.txt-type').getAttribute('data-wait')));
+    TypeWriter.prototype.ty=function(){
+      const t=this.w%this.e.length,s=this.e[t];
+      this.d?this.tx=s.substring(0,this.tx.length-1):this.tx=s.substring(0,this.tx.length+1);
+      this.t.innerHTML=`<span class="txt">${this.tx}</span>`;
+      let i=100; if(this.d)i/=2;
+      if(!this.d&&this.tx===s){i=this.wt;this.d=!0}else if(this.d&&''===this.tx){this.d=!1;this.w++;i=500}
+      setTimeout(()=>this.ty(),i)
+    };
+    document.addEventListener('DOMContentLoaded',()=>{
+      const el = document.querySelector('.txt-type');
+      new TypeWriter(el,JSON.parse(el.getAttribute('data-words')),el.getAttribute('data-wait'));
+    });
   </script>
 </body>
 </html>
