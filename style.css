@@ -153,3 +153,18 @@ footer { text-align: center; padding: 30px; color: var(--text-secondary); font-s
   .sidebar { position: relative; top: 0; margin-bottom: 40px; }
 }
 
+.role {
+  font-size: 1.1rem;
+  color: var(--text-primary); /* Texto principal para el "I am a" */
+  font-family: 'Fira Code', monospace;
+  margin: 15px 0;
+  display: block;
+}
+
+.role .txt-type {
+  color: var(--accent); /* Color neón solo para las palabras que cambian */
+  font-weight: 600;
+  border-right: 2px solid var(--accent); /* Cursor que parpadea */
+  padding-right: 5px;
+}
+
