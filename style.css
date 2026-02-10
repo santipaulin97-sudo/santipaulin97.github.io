@@ -3,172 +3,62 @@
   --bg-color: #0a192f;
   --text-primary: #e6f1ff;
   --text-secondary: #8892b0;
-  --accent: #64ffda; /* Verde Neon */
-  --panel-bg: rgba(17, 34, 64, 0.8); /* Un poco más opaco para legibilidad */
+  --accent: #64ffda; /* Verde Neón */
+  --panel-bg: rgba(17, 34, 64, 0.85);
   --panel-border: rgba(255, 255, 255, 0.1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-
-body {
-  background: var(--bg-color);
-  color: var(--text-primary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  font-family: 'Inter', sans-serif; 
 }
 
-/* CANVAS FIXED */
-canvas#network { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-
-/* ====== DASHBOARD GRID ====== */
-.dashboard {
-  display: grid;
-  grid-template-columns: 360px 1fr; /* Sidebar un poco más ancha para las banderas */
-  gap: 30px;
-  max-width: 1250px;
-  margin: 40px auto;
-  padding: 0 20px;
-  align-items: start;
+body { 
+  background: var(--bg-color); 
+  color: var(--text-primary); 
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  overflow-x: hidden; 
 }
 
-/* ====== PANELES DE CRISTAL ====== */
-.glass-panel {
-  background: var(--panel-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7);
+canvas#network { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  z-index: -1; 
 }
 
-/* ====== SIDEBAR ====== */
+/* ====== LAYOUT (DASHBOARD GRID) ====== */
+.dashboard { 
+  display: grid; 
+  grid-template-columns: 360px 1fr; 
+  gap: 30px; 
+  width: 100%; 
+  max-width: 1250px; 
+  margin: 40px auto; 
+  padding: 0 20px; 
+  align-items: start; 
+}
+
+.glass-panel { 
+  background: var(--panel-bg); 
+  backdrop-filter: blur(12px); 
+  border: 1px solid var(--panel-border); 
+  border-radius: 12px; 
+  padding: 25px; 
+  margin-bottom: 20px; 
+  box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7); 
+}
+
 .sidebar { position: sticky; top: 20px; }
 
-.name { font-size: 2.2rem; font-weight: 700; color: #fff; line-height: 1.1; }
-.role { font-size: 1.2rem; color: var(--accent); font-family: 'Fira Code', monospace; margin: 5px 0 15px 0; }
-
-/* Etiquetas de perfil (Risk, Cloud, etc) */
-.badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
-.badges span { background: rgba(100, 255, 218, 0.1); color: var(--accent); font-size: 0.75rem; padding: 4px 10px; border-radius: 15px; border: 1px solid rgba(100,255,218,0.3); }
-
-.bio { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
-
-/* REDES SOCIALES */
-.social-links { display: flex; gap: 10px; }
-.btn-social {
-  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px;
-  background: transparent; border: 1px solid var(--accent); color: var(--accent);
-  text-decoration: none; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.9rem; transition: 0.3s;
-}
-.btn-social:hover { background: rgba(100, 255, 218, 0.1); transform: translateY(-2px); }
-
-/* ESTILOS NUEVOS PARA IDIOMAS (BANDERAS) */
-.lang-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-.lang-item {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 8px;
-  background: rgba(255,255,255,0.03);
-  border-radius: 8px;
-}
-
-/* banderita */
-.lang-item img {
-  width: 28px;
-  height: 20px;
-  object-fit: cover;
-  border-radius: 3px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-/* contenedor de texto (dos renglones) */
-.lang-item div {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-  gap: 0; /* no agregamos separación vertical extra */
-}
-
-/* nombre del idioma (ej: Spanish) */
-.lang-item strong {
-  font-size: 0.9rem;
-  color: #fff;
-}
-
-/* nivel (ej: Native, C1) — desplazado ligeramente hacia la derecha para todos los idiomas */
-.lang-item span {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  font-family: 'Fira Code', monospace;
-  display: inline-block;    /* para que margin-left funcione consistentemente */
-  margin-left: 6px;         /* <-- indent lateral que pediste (ajustá 4px/8px si querés) */
-}
-
-/* TECH GRID */
-.tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 15px; }
-.tech-icon {
-  background: rgba(255,255,255,0.05); border-radius: 8px; padding: 12px;
-  display: flex; align-items: center; justify-content: center; transition: 0.3s;
-  border: 1px solid transparent;
-}
-.tech-icon img { width: 100%; height: auto; max-width: 32px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-.tech-icon:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); transform: translateY(-3px); }
-
-/* ====== CONTENT ====== */
-.section-title { font-size: 1.5rem; color: #fff; margin-bottom: 20px; display: flex; align-items: center; }
-.section-title span { color: var(--accent); font-family: 'Fira Code', monospace; margin-right: 10px; }
-
-/* JOB CARDS */
-.job-card { padding: 25px; transition: 0.3s; border-left: 3px solid transparent; }
-.job-card:hover { border-left-color: var(--accent); transform: translateX(5px); }
-.job-header { display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; }
-.job-header h4 { font-size: 1.1rem; color: #e6f1ff; }
-.highlight { color: var(--accent); font-weight: 600; }
-.date { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-secondary); }
-
-/* PROJECT GRID (AHORA 2 COLUMNAS PERFECTAS) */
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
-.project-card { height: 100%; display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s; }
-.project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-
-.card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-.card-top h5 { color: #e6f1ff; font-size: 1.1rem; font-weight: 700; }
-.icon-proj { color: var(--accent); font-size: 1.2rem; }
-
-.project-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
-.tags { display: flex; flex-wrap: wrap; gap: 10px; }
-.tags span { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 0.75rem; background: rgba(100, 255, 218, 0.1); padding: 3px 8px; border-radius: 4px; }
-
- /* FOOTER */
-footer { text-align: center; padding: 30px; color: var(--text-secondary); font-size: 0.8rem; grid-column: 1 / -1; }
-
- /* MOBILE RESPONSIVE */
-@media (max-width: 900px) {
-  .dashboard { grid-template-columns: 1fr; margin-top: 20px; }
-  .sidebar { position: relative; top: 0; margin-bottom: 40px; }
-}
-
-.role {
-  font-size: 1.1rem;
-  color: var(--text-primary); /* Texto principal para el "I am a" */
-  font-family: 'Fira Code', monospace;
-  margin: 15px 0;
-  display: block;
-}
-
-.role .txt-type {
-  color: var(--accent); /* Color neón solo para las palabras que cambian */
-  font-weight: 600;
-  border-right: 2px solid var(--accent); /* Cursor que parpadea */
-  padding-right: 5px;
-}
-
-/* --- NUEVA SECCIÓN: BRANDING & LOGO --- */
+/* ====== BRANDING & LOGO (INICIO) ====== */
 .brand-container {
   display: flex;
   align-items: center;
@@ -191,23 +81,24 @@ footer { text-align: center; padding: 30px; color: var(--text-secondary); font-s
   position: relative;
   background: rgba(100, 255, 218, 0.05);
   flex-shrink: 0;
+  transition: 0.3s;
 }
 
-/* El detalle técnico de los corchetes arriba del logo */
 .logo-box::before {
   content: '{ }';
   position: absolute;
   top: -12px;
-  background: var(--bg-color); /* Esto tapa la línea del borde */
+  background: var(--bg-color);
   font-size: 0.65rem;
   padding: 0 5px;
   letter-spacing: 1px;
 }
 
 .brand-text .name {
-  font-size: 1.7rem; /* Ajustamos un poco el tamaño para que armonice con el logo */
-  margin: 0;
-  white-space: nowrap;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
 }
 
 .status-badge {
@@ -222,7 +113,6 @@ footer { text-align: center; padding: 30px; color: var(--text-secondary); font-s
   font-family: 'Fira Code', monospace;
 }
 
-/* El punto verde con animación de pulsación */
 .dot {
   width: 7px;
   height: 7px;
@@ -238,3 +128,132 @@ footer { text-align: center; padding: 30px; color: var(--text-secondary); font-s
   100% { opacity: 1; transform: scale(1); }
 }
 
+/* ====== PROFILE & TYPEWRITER ====== */
+.role { 
+  font-size: 1.1rem; 
+  color: var(--text-primary); 
+  font-family: 'Fira Code', monospace; 
+  margin: 15px 0; 
+  display: block;
+}
+
+.role .txt-type { color: var(--accent); font-weight: 600; }
+
+.badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
+.badges span { 
+  background: rgba(100, 255, 218, 0.1); 
+  color: var(--accent); 
+  font-size: 0.75rem; 
+  padding: 4px 10px; 
+  border-radius: 15px; 
+  border: 1px solid rgba(100,255,218,0.3); 
+}
+
+.bio { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+
+/* ====== SOCIAL BUTTONS ====== */
+.social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-social { 
+  flex: 1; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 8px; 
+  padding: 10px; 
+  background: transparent; 
+  border: 1px solid var(--accent); 
+  color: var(--accent); 
+  text-decoration: none; 
+  border-radius: 6px; 
+  font-family: 'Fira Code', monospace; 
+  font-size: 0.85rem; 
+  transition: 0.3s; 
+  min-width: 100px; 
+}
+.btn-social:hover { background: rgba(100, 255, 218, 0.1); transform: translateY(-2px); }
+.btn-cv { background: rgba(100, 255, 218, 0.1); color: #fff; } 
+.btn-cv:hover { background: var(--accent); color: var(--bg-color); }
+
+/* ====== LANGUAGES (CON BANDERAS) ====== */
+.lang-list { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+.lang-item { 
+  display: flex; 
+  align-items: center; 
+  gap: 15px; 
+  padding: 8px; 
+  background: rgba(255,255,255,0.03); 
+  border-radius: 8px; 
+}
+.lang-item img { width: 28px; height: 18px; object-fit: cover; border-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.lang-item div { display: flex; flex-direction: column; line-height: 1.2; }
+.lang-item strong { font-size: 0.9rem; color: #fff; }
+.lang-item span { font-size: 0.75rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; margin-left: 5px; }
+
+/* ====== TECH STACK GRID ====== */
+.tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 15px; }
+.tech-icon { 
+  background: rgba(255,255,255,0.05); 
+  border-radius: 8px; 
+  padding: 10px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  transition: 0.3s; 
+  border: 1px solid transparent; 
+  aspect-ratio: 1; 
+}
+.tech-icon img { width: 32px; height: 32px; object-fit: contain; }
+.tech-icon:hover { 
+  background: rgba(255,255,255,0.1); 
+  border-color: var(--accent); 
+  transform: translateY(-3px); 
+}
+
+/* ====== CONTENT SECTIONS ====== */
+.section-title { font-size: 1.5rem; color: #fff; margin-bottom: 25px; display: flex; align-items: center; }
+.section-title span { color: var(--accent); font-family: 'Fira Code', monospace; margin-right: 10px; }
+
+/* EXPERIENCE CARDS */
+.job-card { padding: 25px; transition: 0.3s; border-left: 3px solid transparent; }
+.job-card:hover { border-left-color: var(--accent); transform: translateX(5px); background: rgba(100, 255, 218, 0.02); }
+.job-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.job-header h4 { font-size: 1.1rem; color: #e6f1ff; }
+.highlight { color: var(--accent); font-weight: 600; }
+.date { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-secondary); }
+.job-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+/* PROJECTS GRID */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.project-card { 
+  height: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  transition: 0.3s; 
+}
+.project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.card-top h5 { color: #e6f1ff; font-size: 1.1rem; font-weight: 700; }
+.icon-link { color: var(--accent); font-size: 1.3rem; transition: 0.3s; }
+.icon-link:hover { color: #fff; transform: scale(1.1); }
+
+.project-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags span { 
+  font-family: 'Fira Code', monospace; 
+  color: var(--accent); 
+  font-size: 0.7rem; 
+  background: rgba(100, 255, 218, 0.1); 
+  padding: 3px 8px; 
+  border-radius: 4px; 
+}
+
+/* ====== FOOTER ====== */
+footer { text-align: center; padding: 40px; color: var(--text-secondary); font-size: 0.8rem; width: 100%; }
+
+/* ====== MOBILE RESPONSIVE ====== */
+@media (max-width: 900px) {
+  .dashboard { grid-template-columns: 1fr; margin-top: 20px; }
+  .sidebar { position: relative; top: 0; }
+  .brand-text .name { font-size: 1.5rem; }
+}
