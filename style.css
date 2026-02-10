@@ -168,3 +168,73 @@ footer { text-align: center; padding: 30px; color: var(--text-secondary); font-s
   padding-right: 5px;
 }
 
+/* --- NUEVA SECCIÓN: BRANDING & LOGO --- */
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.logo-box {
+  width: 55px;
+  height: 55px;
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 1.4rem;
+  border-radius: 10px;
+  position: relative;
+  background: rgba(100, 255, 218, 0.05);
+  flex-shrink: 0;
+}
+
+/* El detalle técnico de los corchetes arriba del logo */
+.logo-box::before {
+  content: '{ }';
+  position: absolute;
+  top: -12px;
+  background: var(--bg-color); /* Esto tapa la línea del borde */
+  font-size: 0.65rem;
+  padding: 0 5px;
+  letter-spacing: 1px;
+}
+
+.brand-text .name {
+  font-size: 1.7rem; /* Ajustamos un poco el tamaño para que armonice con el logo */
+  margin: 0;
+  white-space: nowrap;
+}
+
+.status-badge {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Fira Code', monospace;
+}
+
+/* El punto verde con animación de pulsación */
+.dot {
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
