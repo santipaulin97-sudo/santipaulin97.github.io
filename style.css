@@ -207,3 +207,30 @@ footer { text-align: center; padding: 40px; color: var(--text-secondary); font-s
 /* Retraso para que salgan uno por uno */
 .contact-widget.active .widget-btn:nth-child(1) { transition-delay: 0.1s; } /* Calendly */
 .contact-widget.active .widget-btn:nth-child(2) { transition-delay: 0.05s; } /* WhatsApp */
+
+/* Texto lateral */
+.fab-label {
+  position: absolute;
+  right: 70px;
+  background: var(--panel-bg);
+  color: var(--accent);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: 'Fira Code', monospace;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(10px);
+  pointer-events: none;
+  transition: 0.3s ease;
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* Mostrar al hover */
+.main-fab:hover .fab-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
