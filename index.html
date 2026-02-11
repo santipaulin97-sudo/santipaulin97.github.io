@@ -46,11 +46,41 @@
     .btn-cv { background: rgba(100, 255, 218, 0.1); color: #fff; } 
     .btn-cv:hover { background: var(--accent); color: var(--bg-color); }
 
-    /* TECH STACK (Ahora va antes) */
-    .tech-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 10px; }
-    .tech-icon { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 8px; display: flex; align-items: center; justify-content: center; transition: 0.3s; border: 1px solid transparent; aspect-ratio: 1; }
-    .tech-icon img { width: 32px; height: 32px; object-fit: contain; }
-    .tech-icon:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); transform: translateY(-3px); }
+    
+    /* TECH STACK (5 columnas, iconos pequeños y brillo) */
+.tech-grid { 
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); /* Fuerza 5 columnas */
+  gap: 10px; 
+  margin-top: 10px; 
+}
+
+.tech-icon { 
+  background: rgba(255,255,255,0.05); 
+  border-radius: 8px; 
+  padding: 8px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  transition: 0.3s; 
+  border: 1px solid transparent; 
+  aspect-ratio: 1; 
+}
+
+/* Iconos de 24px para que se vea compacto */
+.tech-icon img { 
+  width: 24px !important; 
+  height: 24px !important; 
+  object-fit: contain; 
+}
+
+/* Efecto Glow al pasar el mouse */
+.tech-icon:hover { 
+  background: rgba(255,255,255,0.1); 
+  border-color: var(--accent); 
+  transform: translateY(-3px); 
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.2); 
+}
 
     /* LANGUAGES (Más compacto y pequeño) */
     .lang-list { display: flex; flex-direction: column; gap: 8px; } /* Menos gap */
