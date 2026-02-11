@@ -315,6 +315,13 @@
       if(!this.d&&this.tx===s){i=this.wt;this.d=!0}else if(this.d&&''===this.tx){this.d=!1;this.w++;i=500}
       setTimeout(()=>this.ty(),i)
     };
+    /* ================================
+   3. CONTACT WIDGET TOGGLE
+================================ */
+function toggleContact() {
+  const widget = document.getElementById('contactWidget');
+  widget.classList.toggle('active');
+}
     document.addEventListener('DOMContentLoaded',()=>new TypeWriter(document.querySelector('.txt-type'),JSON.parse(document.querySelector('.txt-type').getAttribute('data-words')),document.querySelector('.txt-type').getAttribute('data-wait')));
   </script>
 </body>
