@@ -114,4 +114,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const wait = txtElement.getAttribute('data-wait');
     new TypeWriter(txtElement, words, wait);
   }
+   /* ================================
+   3. CONTACT WIDGET
+================================ */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const widget = document.getElementById("contactWidget");
+  const button = widget?.querySelector(".main-fab");
+
+  if (!widget || !button) return;
+
+  // Toggle al hacer click
+  button.addEventListener("click", (e) => {
+    e.stopPropagation();
+    widget.classList.toggle("active");
+  });
+
+  // Cerrar si se hace click fuera
+  document.addEventListener("click", (e) => {
+    if (!widget.contains(e.target)) {
+      widget.classList.remove("active");
+    }
+  });
+
+
 });
