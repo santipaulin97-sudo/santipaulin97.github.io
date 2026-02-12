@@ -20,15 +20,16 @@
       --panel-bg: rgba(17, 34, 64, 0.85);
       --panel-border: rgba(255, 255, 255, 0.1);
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
     body { background: var(--bg-color); color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
     canvas#network { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     
+    /* LAYOUT */
     .dashboard { display: grid; grid-template-columns: 360px 1fr; gap: 30px; width: 100%; max-width: 1250px; margin: 40px auto; padding: 0 20px; align-items: start; }
     .glass-panel { background: var(--panel-bg); backdrop-filter: blur(12px); border: 1px solid var(--panel-border); border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 10px 30px -10px rgba(2,12,27,0.7); }
     .sidebar { position: sticky; top: 20px; }
 
-    /* HEADER MINIMALISTA */
+    /* HEADER */
     .header-minimal { margin-bottom: 20px; border-bottom: 1px solid rgba(100, 255, 218, 0.1); padding-bottom: 15px; }
     .name { font-size: 2.2rem; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 5px; }
     .subtitle { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
@@ -42,59 +43,29 @@
 
     .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn-social { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; border-radius: 6px; font-family: 'Fira Code', monospace; font-size: 0.85rem; transition: 0.3s; min-width: 100px; }
-    .btn-social:hover { background: rgba(100, 255, 218, 0.1); transform: translateY(-2px); }
+    .btn-social:hover { background: rgba(100, 255, 218, 0.1); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2); }
     .btn-cv { background: rgba(100, 255, 218, 0.1); color: #fff; } 
     .btn-cv:hover { background: var(--accent); color: var(--bg-color); }
 
-    
-    /* TECH STACK (5 columnas, iconos pequeños y brillo) */
-.tech-grid { 
-  display: grid; 
-  grid-template-columns: repeat(5, 1fr); /* Fuerza 5 columnas */
-  gap: 10px; 
-  margin-top: 10px; 
-}
+    /* TECH STACK */
+    .tech-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 10px; }
+    .tech-icon { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 8px; display: flex; align-items: center; justify-content: center; transition: 0.3s; border: 1px solid transparent; aspect-ratio: 1; }
+    .tech-icon img { width: 24px !important; height: 24px !important; object-fit: contain; }
+    .tech-icon:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 0 10px rgba(100, 255, 218, 0.2); }
 
-.tech-icon { 
-  background: rgba(255,255,255,0.05); 
-  border-radius: 8px; 
-  padding: 8px; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  transition: 0.3s; 
-  border: 1px solid transparent; 
-  aspect-ratio: 1; 
-}
-
-/* Iconos de 24px para que se vea compacto */
-.tech-icon img { 
-  width: 24px !important; 
-  height: 24px !important; 
-  object-fit: contain; 
-}
-
-/* Efecto Glow al pasar el mouse */
-.tech-icon:hover { 
-  background: rgba(255,255,255,0.1); 
-  border-color: var(--accent); 
-  transform: translateY(-3px); 
-  box-shadow: 0 0 10px rgba(100, 255, 218, 0.2); 
-}
-
-    /* LANGUAGES (Más compacto y pequeño) */
-    .lang-list { display: flex; flex-direction: column; gap: 8px; } /* Menos gap */
-    .lang-item { display: flex; align-items: center; gap: 10px; padding: 6px; background: rgba(255,255,255,0.03); border-radius: 8px; } /* Menos padding y gap */
-    .lang-item img { width: 24px; height: 16px; object-fit: cover; border-radius: 2px; } /* Banderas más chicas */
-    .lang-item strong { font-size: 0.85rem; color: #fff; } /* Texto más chico */
-    .lang-item span { font-size: 0.7rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; margin-left: 5px; } /* Texto secundario más chico */
+    /* LANGUAGES */
+    .lang-list { display: flex; flex-direction: column; gap: 8px; }
+    .lang-item { display: flex; align-items: center; gap: 10px; padding: 6px; background: rgba(255,255,255,0.03); border-radius: 8px; }
+    .lang-item img { width: 24px; height: 16px; object-fit: cover; border-radius: 2px; }
+    .lang-item strong { font-size: 0.85rem; color: #fff; }
+    .lang-item span { font-size: 0.7rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; margin-left: 5px; }
     
     /* CONTENT */
     .section-title { font-size: 1.5rem; color: #fff; margin-bottom: 20px; display: flex; align-items: center; }
     .section-title span { color: var(--accent); font-family: 'Fira Code', monospace; margin-right: 10px; }
     
     .job-card { padding: 20px; margin-bottom: 15px; transition: 0.3s; border-left: 3px solid transparent; }
-    .job-card:hover { border-left-color: var(--accent); transform: translateX(5px); }
+    .job-card:hover { border-left-color: var(--accent); transform: translateX(5px); background: rgba(100, 255, 218, 0.02); }
     .job-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; }
     .job-header h4 { font-size: 1.1rem; color: #e6f1ff; } 
     .highlight { color: var(--accent); font-weight: 600; }
@@ -106,10 +77,28 @@
     .project-card:hover { transform: translateY(-5px); border-color: var(--accent); }
     .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
     .card-top h5 { color: #e6f1ff; font-size: 1.1rem; font-weight: 700; }
-    .icon-link { color: var(--accent); font-size: 1.3rem; }
+    .icon-link { color: var(--accent); font-size: 1.3rem; transition: 0.3s; }
+    .icon-link:hover { color: #fff; transform: scale(1.1); }
     .project-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 15px; flex-grow: 1; }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tags span { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 0.7rem; background: rgba(100, 255, 218, 0.1); padding: 3px 8px; border-radius: 4px; }
+
+    /* CONTACT WIDGET REFINADO */
+    .contact-widget { position: fixed; bottom: 30px; right: 30px; z-index: 1000; display: flex; flex-direction: column; align-items: flex-end; gap: 15px; }
+    .widget-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 5px; }
+    .widget-btn { width: 48px; height: 48px; border-radius: 50%; background: var(--panel-bg); border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,0.4); opacity: 0; transform: translateY(20px) scale(0); pointer-events: none; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); backdrop-filter: blur(8px); }
+    .contact-widget.active .widget-btn { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+    .whatsapp:hover { background: #25D366; color: white; border-color: #25D366; }
+    .calendly:hover { background: #006BFF; color: white; border-color: #006BFF; }
+    
+    .main-fab { width: 60px; height: 60px; border-radius: 50%; background: var(--accent); color: var(--bg-color); border: none; font-size: 1.6rem; cursor: pointer; box-shadow: 0 0 20px rgba(100, 255, 218, 0.4); display: flex; align-items: center; justify-content: center; position: relative; transition: 0.3s; }
+    .fab-label { position: absolute; right: 75px; background: white; color: #0a192f; padding: 6px 15px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; transform: translateX(10px); pointer-events: none; transition: 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .main-fab:hover .fab-label { opacity: 1; transform: translateX(0); }
+    .main-fab i { position: absolute; transition: 0.3s; }
+    .main-fab .close-icon { opacity: 0; transform: rotate(-90deg); }
+    .contact-widget.active .icon-main { opacity: 0; transform: rotate(90deg); }
+    .contact-widget.active .close-icon { opacity: 1; transform: rotate(0); }
+    .contact-widget.active .main-fab { background: #fff; }
 
     footer { text-align: center; padding: 40px; color: var(--text-secondary); font-size: 0.8rem; width: 100%; }
     @media (max-width: 900px) { .dashboard { grid-template-columns: 1fr; } .sidebar { position: relative; top: 0; } }
@@ -261,29 +250,26 @@
     </section>
   </main>
 
-
   <div class="contact-widget" id="contactWidget">
-  <div class="widget-options">
-    <a href="https://calendly.com/santipaulin97/30min" target="_blank" class="widget-btn calendly" title="Agendar Reunión">
-      <i class="far fa-calendar-alt"></i>
-    </a>
-    <a href="https://wa.me/5493515310485?text=Hola%20Santiago,%20vi%20tu%20portfolio..." target="_blank" class="widget-btn whatsapp" title="Chat en WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
+    <div class="widget-options">
+      <a href="https://calendly.com/santipaulin97/30min" target="_blank" class="widget-btn calendly" title="Calendly">
+        <i class="far fa-calendar-alt"></i>
+      </a>
+      <a href="https://wa.me/5493515310485?text=Hola%20Santiago..." target="_blank" class="widget-btn whatsapp" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+    <button class="main-fab" onclick="toggleContact()">
+      <span class="fab-label">Contactate conmigo</span>
+      <i class="fas fa-comment-dots icon-main"></i>
+      <i class="fas fa-times close-icon"></i>
+    </button>
   </div>
-
-  <button class="main-fab" onclick="toggleContact()">
-    <span class="fab-label">Contactate conmigo</span>
-    <i class="fas fa-comment-dots icon-main"></i>
-    <i class="fas fa-times close-icon"></i>
-  </button>
-</div>
-
-</div>
 
   <footer><p>Designed & Built by Santiago Paulin</p></footer>
 
   <script>
+    /* 1. BACKGROUND */
     const canvas = document.getElementById("network");
     const ctx = canvas.getContext("2d");
     let w, h, nodes;
@@ -306,23 +292,38 @@
     }
     draw();
 
-    const TypeWriter=function(t,e,i=3000){this.t=t,this.e=e,this.tx='',this.w=0,this.wt=parseInt(i,10),this.ty(),this.d=!1};
-    TypeWriter.prototype.ty=function(){
-      const t=this.w%this.e.length,s=this.e[t];
-      this.d?this.tx=s.substring(0,this.tx.length-1):this.tx=s.substring(0,this.tx.length+1);
-      this.t.innerHTML=`<span class="txt">${this.tx}</span>`;
-      let i=100; if(this.d)i/=2;
-      if(!this.d&&this.tx===s){i=this.wt;this.d=!0}else if(this.d&&''===this.tx){this.d=!1;this.w++;i=500}
-      setTimeout(()=>this.ty(),i)
-    };
-    /* ================================
-   3. CONTACT WIDGET TOGGLE
-================================ */
-function toggleContact() {
-  const widget = document.getElementById('contactWidget');
-  widget.classList.toggle('active');
-}
-    document.addEventListener('DOMContentLoaded',()=>new TypeWriter(document.querySelector('.txt-type'),JSON.parse(document.querySelector('.txt-type').getAttribute('data-words')),document.querySelector('.txt-type').getAttribute('data-wait')));
+    /* 2. TYPEWRITER */
+    class TypeWriter {
+      constructor(t,e,i=3000){this.t=t;this.e=e;this.tx='';this.w=0;this.wt=parseInt(i,10);this.ty();this.d=!1}
+      ty(){
+        const t=this.w%this.e.length,s=this.e[t];
+        this.d?this.tx=s.substring(0,this.tx.length-1):this.tx=s.substring(0,this.tx.length+1);
+        this.t.innerHTML=`<span class="txt">${this.tx}</span>`;
+        let i=100; if(this.d)i/=2;
+        if(!this.d&&this.tx===s){i=this.wt;this.d=!0}else if(this.d&&''===this.tx){this.d=!1;this.w++;i=500}
+        setTimeout(()=>this.ty(),i)
+      }
+    }
+
+    /* 3. CONTACT TOGGLE (Global) */
+    function toggleContact() {
+      const widget = document.getElementById('contactWidget');
+      if(widget) widget.classList.toggle('active');
+    }
+
+    /* 4. INIT */
+    document.addEventListener('DOMContentLoaded', () => {
+      const txtElem = document.querySelector('.txt-type');
+      if(txtElem) new TypeWriter(txtElem, JSON.parse(txtElem.getAttribute('data-words')), txtElem.getAttribute('data-wait'));
+
+      // Cerrar si click afuera
+      document.addEventListener("click", (e) => {
+        const widget = document.getElementById("contactWidget");
+        if (widget && !widget.contains(e.target) && widget.classList.contains("active")) {
+          widget.classList.remove("active");
+        }
+      });
+    });
   </script>
 </body>
 </html>
