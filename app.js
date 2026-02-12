@@ -135,6 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!widget.contains(e.target)) {
       widget.classList.remove("active");
     }
+
+     function toggleContact() {
+  const widget = document.getElementById('contactWidget');
+  widget.classList.toggle('active');
+}
   });
 
 
