@@ -104,70 +104,23 @@ canvas#network { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-
 footer { text-align: center; padding: 40px; color: var(--text-secondary); font-size: 0.8rem; width: 100%; }
 
 @media (max-width: 900px) { .dashboard { grid-template-columns: 1fr; } .sidebar { position: relative; top: 0; } }
-/* ====== WIDGET DE CONTACTO FLOTANTE ====== */
+/* ====== WIDGET DE CONTACTO FLOTANTE (LIMPIO) ====== */
 .contact-widget {
   position: fixed;
   bottom: 30px;
   right: 30px;
   z-index: 1000;
   display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
+  flex-direction: column; 
+  align-items: flex-end; 
   gap: 15px;
 }
 
-/* Botón Principal */
-.main-fab {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--bg-color);
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-}
-
-.main-fab:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(100, 255, 218, 0.6);
-}
-
-/* Iconos de abrir/cerrar */
-.main-fab i {
-  position: absolute;
-  transition: 0.3s;
-}
-
-.main-fab .close-icon {
-  opacity: 0;
-  transform: rotate(-90deg);
-}
-
-/* ====== WIDGET DE CONTACTO FLOTANTE REFINADO ====== */
-.contact-widget {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column; /* Cambiado para que las opciones suban */
-  align-items: flex-end; /* Alinea todo a la derecha */
-  gap: 15px;
-}
-
-/* Contenedor de opciones (WhatsApp/Calendly) */
 .widget-options {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-bottom: 5px; /* Espacio antes del botón principal */
+  margin-bottom: 5px;
 }
 
 .widget-btn {
@@ -190,18 +143,15 @@ footer { text-align: center; padding: 40px; color: var(--text-secondary); font-s
   backdrop-filter: blur(8px);
 }
 
-/* Colores al hover en opciones */
-.whatsapp:hover { background: #25D366; color: white; border-color: #25D366; transform: scale(1.1); }
-.calendly:hover { background: #006BFF; color: white; border-color: #006BFF; transform: scale(1.1); }
-
-/* Animación cuando el widget está activo */
 .contact-widget.active .widget-btn {
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: all;
 }
 
-/* Botón Circular Principal */
+.whatsapp:hover { background: #25D366; color: white; border-color: #25D366; }
+.calendly:hover { background: #006BFF; color: white; border-color: #006BFF; }
+
 .main-fab {
   width: 60px;
   height: 60px;
@@ -219,13 +169,10 @@ footer { text-align: center; padding: 40px; color: var(--text-secondary); font-s
   transition: 0.3s;
 }
 
-.main-fab:hover { transform: scale(1.05); }
-
-/* Label "Contactate conmigo" */
 .fab-label {
   position: absolute;
-  right: 75px; /* Lo mueve a la izquierda del botón */
-  background: white; /* Fondo blanco como en tu captura */
+  right: 75px;
+  background: white;
   color: #0a192f;
   padding: 6px 15px;
   border-radius: 4px;
@@ -239,12 +186,8 @@ footer { text-align: center; padding: 40px; color: var(--text-secondary); font-s
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.main-fab:hover .fab-label {
-  opacity: 1;
-  transform: translateX(0);
-}
+.main-fab:hover .fab-label { opacity: 1; transform: translateX(0); }
 
-/* Manejo de iconos (Chat vs Cerrar) */
 .main-fab i { position: absolute; transition: 0.3s; }
 .main-fab .close-icon { opacity: 0; transform: rotate(-90deg); }
 
